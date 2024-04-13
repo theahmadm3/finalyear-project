@@ -1,0 +1,22 @@
+#root{
+    max-height: 100vh;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+.fluent-input{
+    font-size:1rem;
+    line-height:1.5;
+    border:1px solid lightgray;
+    outline:0;
+    appearance:none;
+    transition: border-width 0.25s ease-in-out, box-shadow .15s ease-in-out;
+  }
+  .fluent-input:focus{
+    border-width:1px 1px 2px 1px;
+    border-color: transparent transparent rgb(89, 174, 226) transparent;
+    background:rgb(248,248,248);
+  }
+  .w-fc{
+    width: fit-contnent;
+  }
