@@ -1,8 +1,10 @@
-#root{
-    max-height: 100vh;
+#root, body{
+    max-height: 100dvh;
     position: sticky;
     top: 0;
+    bottom: 0;
     width: 100%;
+    overflow: hidden;
 }
 .fluent-input{
     font-size:1rem;

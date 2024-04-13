@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Login: React.FC = () => {
+const StudentLogin: React.FC = () => {
 	return (
-		<div className="flex flex-column bg-dark-blue justify-center items-center w-100 vh-100">
+		<div className="overflow-auto flex flex-column bg-dark-blue justify-center items-center w-100 vh-100">
 			<form className="pa2 ba br3 w-50-l w-70-ns w-100 white">
                 <h2 className="tc">Student Login</h2>
 				<div className='pa2 w-100 f4'>
@@ -24,9 +25,12 @@ const Login: React.FC = () => {
                 <div className="pa2 mt4 flex justify-center items-center">
                     <button className="w-fc bn bg-blue white pointer pa2 pl3 pr3 br2"> Login </button>
                 </div>
+                <div className="pa2 mt4 flex justify-center items-center">
+                    <Link to='/login' className="white link">Instructor?</Link>
+                </div>
 			</form>
 		</div>
 	);
 };
 
-export default Login;
+export default StudentLogin;
