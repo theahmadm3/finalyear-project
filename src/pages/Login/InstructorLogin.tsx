@@ -16,19 +16,19 @@ const InstructorLogin: React.FC = () => {
 				>
 					<h2 className="tc">Instructor Login</h2>
 					<div className="pa2 w-100 f4">
-						<label htmlFor="student_id">Instructor ID</label>
+						<label htmlFor="instructor_id">Instructor ID</label>
 						<input
 							type="text"
-							id="student_id"
+							id="instructor_id"
 							className="pa2 w-100 br3 bg-white f4 black fluent-input bg-animate mt2"
-							placeholder="Student Id"
+							placeholder="Instructor Id"
 						/>
 					</div>
 					<div className="pa2 w-100 f4">
-						<label htmlFor="student_password">Password</label>
+						<label htmlFor="instructor_password">Password</label>
 						<input
 							type="password"
-							id="student_password"
+							id="instructor_password"
 							className="pa2 w-100 br3 bg-white f4 black fluent-input bg-animate mt2"
 							placeholder="Password"
 						/>
