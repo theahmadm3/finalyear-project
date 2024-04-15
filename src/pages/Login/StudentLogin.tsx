@@ -8,12 +8,12 @@ const StudentLogin: React.FC = () => {
 	};
 
 	return (
-		<div className="overflow-auto flex flex-row-ns flex-column justify-between-ns justify-center w-100 vh-100">
-			<div className="w-50 dn-s bg-dark-blue"></div>
-			<div className="w-50-ns pa2 flex-ns justify-center-ns items-center-ns bg-black">
+		<div className="overflow-auto bg-dark-blue flex flex-row-ns flex-column justify-between-ns justify-center w-100 vh-100">
+			<div className="w-50 dn-s"></div>
+			<div className="w-50-ns pa2 flex-ns justify-center-ns items-center-ns bg-black-40">
 				<form
 					onSubmit={handleLogin}
-					className="pa2 ba br3 w-70-ns w-100 white"
+					className="pa2 shadow-1 br3 w-70-l w-100 white"
 				>
 					<h2 className="tc">Student Login</h2>
 					<div className="pa2 w-100 f4">
