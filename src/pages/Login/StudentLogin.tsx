@@ -1,12 +1,20 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import { Link } from "react-router-dom";
 
 const StudentLogin: React.FC = () => {
+
+	const handleLogin = (e: FormEvent) => {
+		e.preventDefault();
+	};
+
 	return (
 		<div className="overflow-auto flex flex-row-ns flex-column justify-between-ns justify-center w-100 vh-100">
 			<div className="w-50 dn-s bg-dark-blue"></div>
 			<div className="w-50-ns pa2 flex-ns justify-center-ns items-center-ns bg-black">
-				<form className="pa2 ba br3 w-40-l w-70-m w-100 white">
+				<form
+					onSubmit={handleLogin}
+					className="pa2 ba br3 w-70-ns w-100 white"
+				>
 					<h2 className="tc">Student Login</h2>
 					<div className="pa2 w-100 f4">
 						<label htmlFor="student_id">Student ID</label>
