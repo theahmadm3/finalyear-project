@@ -17,7 +17,7 @@ const PhoneSideBar: React.FC = () => {
 			</Button>
 
 			{userType === "student" ? (
-				<Offcanvas show={show} onHide={handleClose}>
+				<Offcanvas show={show} onHide={handleClose} className='ba w-50'>
 					<Offcanvas.Header closeButton></Offcanvas.Header>
 					<Offcanvas.Body>
 						<p>Profile</p>

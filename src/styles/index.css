@@ -23,6 +23,9 @@ body {
 .w-fc {
 	width: fit-content;
 }
+.sticky{
+	position: sticky;
+}
 @media (max-width: 767px) {
     .dn-s{
         display:none;
