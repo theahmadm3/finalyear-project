@@ -21,7 +21,7 @@ body {
 	background: rgb(248, 248, 248);
 }
 .w-fc {
-	width: fit-contnent;
+	width: fit-content;
 }
 @media (max-width: 767px) {
     .dn-s{
