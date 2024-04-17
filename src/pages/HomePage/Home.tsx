@@ -43,12 +43,12 @@ const Home: React.FC = () => {
 		</div>
 	) : (
 		// View for larger screens (mostly computers)
-		<div className="w-100 inline-flex justify-between">
-			<div className="w-20 pa2">
+		<div className="w-100 vh-100 inline-flex justify-between pt1 sticky top-0 bottom-0 overflow-hidden">
+			<div className="w-20 pa2 bt br">
 				<p>Menu</p>
 				<SideBar />
 			</div>
-			<div className="w-80 flex flex-column pa2">
+			<div className="w-80 flex flex-column pa2 overflow-auto">
 				<div className="sticky top-0 left-0 w-100">
 					<Header />
 				</div>

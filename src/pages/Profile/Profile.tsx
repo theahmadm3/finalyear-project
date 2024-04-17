@@ -39,20 +39,14 @@ const Profile: React.FC = () => {
 						<p>Nigeria</p>
 					</div>
 					<div className="pa2 w-25-ns w-100">
-						<p className="b">Email</p>
-						<p>theahmadm3@gmail.com</p>
-						<br />
-						<p className="b">Phone</p>
+						
+                    <p className="b">Phone</p>
 						<p>08186690024</p>
 					</div>
 					<div className="pa2 w-25-ns w-100">
-						<p className="b">blob</p>
+						<p className="b">Email</p>
 						<p>theahmadm3@gmail.com</p>
-						<br />
-						<p className="b">Phone</p>
-						<p>08186690024</p>
 					</div>
-					<div className="pa2 w-25-ns w-100"></div>
 				</div>
 			</section>
 		</div>
