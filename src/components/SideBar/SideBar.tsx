@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SideBar: React.FC = () => {
 	const linkStyles = {
@@ -43,7 +43,7 @@ const SideBar: React.FC = () => {
 			>
 				<p>Settings</p>
 			</NavLink>
-			<div>Logout</div>
+			<Link to='/' className='link black'>Logout</Link>
 		</div>
 	);
 };

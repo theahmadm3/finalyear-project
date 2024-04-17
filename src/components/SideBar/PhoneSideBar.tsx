@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
+import { Link } from "react-router-dom";
+
 const PhoneSideBar: React.FC = () => {
 	const [show, setShow] = useState<boolean>(false);
 
@@ -12,18 +14,20 @@ const PhoneSideBar: React.FC = () => {
 	return (
 		<>
 			<button className="bn bg-transparent" onClick={handleShow}>
-            <i className="material-icons">menu</i>
+				<i className="material-icons">menu</i>
 			</button>
 
 			{userType === "student" ? (
-				<Offcanvas show={show} onHide={handleClose} className='ba w-50'>
+				<Offcanvas show={show} onHide={handleClose} className="ba w-50">
 					<Offcanvas.Header closeButton></Offcanvas.Header>
 					<Offcanvas.Body>
 						<p>Profile</p>
 						<p>Courses</p>
 						<p>Attendance</p>
 						<p>Settings</p>
-						<p>Logout</p>
+						<Link to="/" className="link black">
+							Logout
+						</Link>
 					</Offcanvas.Body>
 				</Offcanvas>
 			) : (
@@ -35,7 +39,9 @@ const PhoneSideBar: React.FC = () => {
 						<p>Attendance</p>
 						<p>Attendance Records</p>
 						<p>Settings</p>
-						<p>Logout</p>
+						<Link to="/" className="link black">
+							Logout
+						</Link>
 					</Offcanvas.Body>
 				</Offcanvas>
 			)}

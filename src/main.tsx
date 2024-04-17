@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "bootstrap";
 import "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from "./App.tsx";
 import InstructorLogin from "./pages/Login/InstructorLogin.tsx";
