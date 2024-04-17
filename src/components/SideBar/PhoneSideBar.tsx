@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 const PhoneSideBar: React.FC = () => {
@@ -12,9 +11,9 @@ const PhoneSideBar: React.FC = () => {
 
 	return (
 		<>
-			<Button variant="primary" onClick={handleShow}>
-				Launch
-			</Button>
+			<button className="bn bg-transparent" onClick={handleShow}>
+            <i className="material-icons">menu</i>
+			</button>
 
 			{userType === "student" ? (
 				<Offcanvas show={show} onHide={handleClose} className='ba w-50'>
