@@ -34,21 +34,21 @@ const Home: React.FC = () => {
 	return windowSize.width < 1000 ? (
 		// View for smaller screens (mostly phones and tablets)
 		<div className="w-100 sticky top-0 bottom-0 flex flex-column">
-			<div className="bg-white z-5 sticky top-0 left-0 w-100 inline-flex justify-between pa2 ba">
+			<div className="bg-dark-blue white z-5 sticky top-0 left-0 w-100 inline-flex justify-between pa2">
 				<PhoneHeader />
 			</div>
-			<div className="w-100 overflow-scroll">
+			<div className="w-100 bg-blue white overflow-scroll">
 				<Outlet />
 			</div>
 		</div>
 	) : (
 		// View for larger screens (mostly computers)
-		<div className="w-100 vh-100 inline-flex justify-between pt1 sticky top-0 bottom-0 overflow-hidden">
-			<div className="w-20 pa2 bt br">
+		<div className="w-100 vh-100 inline-flex justify-between sticky top-0 bottom-0 overflow-hidden">
+			<div className="w-20 pa2 bg-dark-blue white">
 				<p>Menu</p>
 				<SideBar />
 			</div>
-			<div className="w-80 flex flex-column pa2 overflow-auto">
+			<div className="w-80 bg-blue white flex flex-column pa2 overflow-auto">
 				<div className="sticky top-0 left-0 w-100">
 					<Header />
 				</div>

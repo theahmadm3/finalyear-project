@@ -20,7 +20,7 @@
 .b-circle {
 	width: 100px;
 	height: 100px;
-	border: 2px solid black;
+	border: 5px ridge white;
 	border-radius: 50%;
 }
 @media (max-width: 767px) {
