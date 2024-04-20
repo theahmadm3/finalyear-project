@@ -19,7 +19,7 @@ const InstructorLogin: React.FC = () => {
 				>
 					<h2 className="tc">Instructor Login</h2>
 					<div className="pa2 w-100 f4">
-						<label htmlFor="email">Instructor ID</label>
+						<label htmlFor="email">Email</label>
 						<input
 							type="text"
 							id="email"

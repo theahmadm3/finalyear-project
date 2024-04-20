@@ -1,14 +1,13 @@
 import React, { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
+const InstructorLogin: React.FC = () => {
+	const [email, setEmail] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
 
-const StudentLogin: React.FC = () => {
-	const [email, setEmail] = useState<string>('')
-	const [password, setPassword] = useState<string>('')
 	const handleLogin = (e: FormEvent) => {
 		e.preventDefault();
 	};
-	
 
 	return (
 		<div className="overflow-auto bg-dark-blue flex flex-row-ns flex-column-s justify-between-ns justify-center w-100 vh-100">
@@ -20,31 +19,35 @@ const StudentLogin: React.FC = () => {
 				>
 					<h2 className="tc">Student Login</h2>
 					<div className="pa2 w-100 f4">
-						<label htmlFor="student_id">Student ID</label>
+						<label htmlFor="email">Student Email</label>
 						<input
 							type="text"
-							id="student_id"
+							id="email"
 							className="pa2 w-100 br3 bg-white f4 black fluent-input bg-animate mt2"
-							placeholder="Student Id"
+							placeholder="email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</div>
 					<div className="pa2 w-100 f4">
-						<label htmlFor="student_password">Password</label>
+						<label htmlFor="password">Password</label>
 						<input
 							type="password"
-							id="student_password"
+							id="password"
 							className="pa2 w-100 br3 bg-white f4 black fluent-input bg-animate mt2"
 							placeholder="Password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
 					<div className="pa2 mt4 flex justify-center items-center">
-						{/* <button className="w-fc bn bg-blue white pointer pa2 pl3 pr3 br2">
+						<button
+							type="submit"
+							className="w-fc bn bg-blue white pointer pa2 pl3 pr3 br2"
+						>
 							{" "}
 							Login{" "}
-						</button> */}
-						<Link to="/portal" className="white link">
-							Login
-						</Link>
+						</button>
 					</div>
 					<div className="pa2 mt4 flex justify-center items-center">
 						<Link to="/login" className="white link">
@@ -57,4 +60,4 @@ const StudentLogin: React.FC = () => {
 	);
 };
 
-export default StudentLogin;
+export default InstructorLogin;
