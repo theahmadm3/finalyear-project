@@ -1,7 +1,10 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
 const InstructorLogin: React.FC = () => {
+	const [email, setEmail] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
+
 	const handleLogin = (e: FormEvent) => {
 		e.preventDefault();
 	};
@@ -16,31 +19,35 @@ const InstructorLogin: React.FC = () => {
 				>
 					<h2 className="tc">Instructor Login</h2>
 					<div className="pa2 w-100 f4">
-						<label htmlFor="instructor_id">Instructor ID</label>
+						<label htmlFor="email">Instructor ID</label>
 						<input
 							type="text"
-							id="instructor_id"
+							id="email"
 							className="pa2 w-100 br3 bg-white f4 black fluent-input bg-animate mt2"
-							placeholder="Instructor Id"
+							placeholder="email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</div>
 					<div className="pa2 w-100 f4">
-						<label htmlFor="instructor_password">Password</label>
+						<label htmlFor="password">Password</label>
 						<input
 							type="password"
-							id="instructor_password"
+							id="password"
 							className="pa2 w-100 br3 bg-white f4 black fluent-input bg-animate mt2"
 							placeholder="Password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
 					<div className="pa2 mt4 flex justify-center items-center">
-						{/* <button className="w-fc bn bg-blue white pointer pa2 pl3 pr3 br2">
+						<button
+							type="submit"
+							className="w-fc bn bg-blue white pointer pa2 pl3 pr3 br2"
+						>
 							{" "}
 							Login{" "}
-						</button> */}
-						<Link to="/portal" className="white link">
-							Login
-						</Link>
+						</button>
 					</div>
 					<div className="pa2 mt4 flex justify-center items-center">
 						<Link to="/student-login" className="white link">

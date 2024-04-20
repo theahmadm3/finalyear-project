@@ -15,53 +15,63 @@ const SideBar: React.FC = () => {
 						to="/portal"
 						style={linkStyles}
 						className={({ isActive }) =>
-							isActive ? "inline-flex link white" : "inline-flex link white"
+							isActive
+								? "pa2 inline-flex link white bg-white blue items-center"
+								: "pa2 inline-flex link white items-center"
 						}
 					>
 						<i className="material-icons mr2">account_circle</i>
-						<p>Profile</p>
+						<p className="ma0">Profile</p>
 					</NavLink>
 					<NavLink
-						to="/"
+						to="/courses"
 						style={linkStyles}
 						className={({ isActive }) =>
-							isActive ? "inline-flex link white" : "inline-flex link white"
+							isActive
+								? "pa2 inline-flex link white bg-white blue items-center"
+								: "pa2 inline-flex link white items-center"
 						}
 					>
 						<i className="material-icons mr2">school</i>
-						<p>Courses</p>
+						<p className="ma0">Courses</p>
 					</NavLink>
 					<NavLink
-						to="/"
+						to="/attendance"
 						style={linkStyles}
 						className={({ isActive }) =>
-							isActive ? "inline-flex link white" : "inline-flex link white"
+							isActive
+								? "pa2 inline-flex link white bg-white blue items-center"
+								: "pa2 inline-flex link white items-center"
 						}
 					>
 						<i className="material-icons mr2">check_box</i>
-						<p>Attendance</p>
+						<p className="ma0">Attendance</p>
 					</NavLink>
 					<NavLink
-						to="/"
+						to="/records"
 						style={linkStyles}
 						className={({ isActive }) =>
-							isActive ? "inline-flex link white" : "inline-flex link white"
+							isActive
+								? "pa2 inline-flex link white bg-white blue items-center"
+								: "pa2 inline-flex link white items-center"
 						}
 					>
 						<i className="material-icons mr2">featured_play_list</i>
-						<p>Attendance Records</p>
+						<p className="ma0">Attendance Records</p>
 					</NavLink>
 					<NavLink
-						to="/"
+						to="/settings"
 						style={linkStyles}
 						className={({ isActive }) =>
-							isActive ? "inline-flex link white" : "inline-flex link white"
+							isActive
+								? "pa2 inline-flex link white bg-white blue items-center"
+								: "pa2 inline-flex link white items-center"
 						}
 					>
 						<i className="material-icons mr2">settings</i>
-						<p>Settings</p>
+						<p className="ma0">Settings</p>
 					</NavLink>
-					<Link to="/" className="link inline-flex white">
+					<Link to="/login" className="pa2 inline-flex link white items-center">
 						<i className="material-icons mr2">logout</i>
 						Logout
 					</Link>
@@ -72,41 +82,49 @@ const SideBar: React.FC = () => {
 						to="/portal"
 						style={linkStyles}
 						className={({ isActive }) =>
-							isActive ? "inline-flex link white" : "inline-flex link white"
+							isActive
+								? "pa2 inline-flex link white bg-white blue items-center"
+								: "pa2 inline-flex link white items-center"
 						}
 					>
 						<i className="material-icons mr2">account_circle</i>
-						<p>Profile</p>
+						<p className="ma0">Profile</p>
 					</NavLink>
 					<NavLink
 						to="/"
 						style={linkStyles}
 						className={({ isActive }) =>
-							isActive ? "inline-flex link white" : "inline-flex link white"
+							isActive
+								? "pa2 inline-flex link white bg-white blue items-center"
+								: "pa2 inline-flex link white items-center"
 						}
 					>
 						<i className="material-icons mr2">school</i>
-						<p>Courses</p>
+						<p className="ma0">Courses</p>
 					</NavLink>
 					<NavLink
 						to="/"
 						style={linkStyles}
 						className={({ isActive }) =>
-							isActive ? "inline-flex link white" : "inline-flex link white"
+							isActive
+								? "pa2 inline-flex link white bg-white blue items-center"
+								: "pa2 inline-flex link white items-center"
 						}
 					>
 						<i className="material-icons mr2">check_box</i>
-						<p>Attendance</p>
+						<p className="ma0">Attendance</p>
 					</NavLink>
 					<NavLink
 						to="/"
 						style={linkStyles}
 						className={({ isActive }) =>
-							isActive ? "inline-flex link white" : "inline-flex link white"
+							isActive
+								? "pa2 inline-flex link white bg-white blue items-center"
+								: "pa2 inline-flex link white items-center"
 						}
 					>
 						<i className="material-icons mr2">settings</i>
-						<p>Settings</p>
+						<p className="ma0">Settings</p>
 					</NavLink>
 					<Link to="/" className="link inline-flex white">
 						<i className="material-icons mr2">logout</i>

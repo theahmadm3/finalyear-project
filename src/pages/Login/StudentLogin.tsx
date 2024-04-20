@@ -1,10 +1,14 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
+
 const StudentLogin: React.FC = () => {
+	const [email, setEmail] = useState<string>('')
+	const [password, setPassword] = useState<string>('')
 	const handleLogin = (e: FormEvent) => {
 		e.preventDefault();
 	};
+	
 
 	return (
 		<div className="overflow-auto bg-dark-blue flex flex-row-ns flex-column-s justify-between-ns justify-center w-100 vh-100">
