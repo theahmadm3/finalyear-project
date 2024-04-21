@@ -24,7 +24,7 @@ const StudentLogin: React.FC = () => {
 			// Perform login
 			await studentLogin(loginData);
 			// Redirect or show success message
-			navigate('/portal')
+			navigate('/portal/profile')
 			
 		} catch (error) {
 			setError("Invalid email or password. Please try again.");

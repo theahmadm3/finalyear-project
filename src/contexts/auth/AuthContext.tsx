@@ -98,7 +98,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 			const data = await response.json();
 			const userData = data.user;
 			setInstructor(userData);
-			setIsStudent(userData.is_student);
+			setIsStudent(false);
 			console.log(data);
 		} catch (error) {
 			console.error("Error fetching user data: ", error);

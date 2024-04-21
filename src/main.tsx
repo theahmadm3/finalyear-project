@@ -16,6 +16,7 @@ import Home from "./pages/HomePage/Home.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import AuthProvider from "./contexts/auth/AuthContext.tsx";
 import Courses from "./pages/Courses/Courses.tsx";
+import ErrorLoading from "./components/Loader/ErrorLoading.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -35,14 +36,18 @@ const router = createBrowserRouter([
 		element: <Home />,
 		children: [
 			{
-				index: true,
+				path: "profile",
 				element: <Profile />,
 			},
 			{
-				path: 'courses',
+				path: "courses",
 				element: <Courses />,
 			},
 		],
+	},
+	{
+		path: "*",
+		element: <ErrorLoading />,
 	},
 ]);
 

@@ -26,7 +26,7 @@ const PhoneSideBar: React.FC = () => {
 				<Offcanvas.Body className="bg-dark-blue white">
 					<Link
 						onClick={handleClose}
-						to="/portal"
+						to="/portal/profile"
 						className="inline-flex w-100 link white hover-bg-blue pa1"
 						style={{ outline: "none" }}
 					>
@@ -35,7 +35,7 @@ const PhoneSideBar: React.FC = () => {
 					</Link>
 					<Link
 						onClick={handleClose}
-						to="/courses"
+						to="/portal/courses"
 						className="inline-flex w-100 link white hover-bg-blue pa1"
 						style={{ outline: "none" }}
 					>
@@ -44,7 +44,7 @@ const PhoneSideBar: React.FC = () => {
 					</Link>
 					<Link
 						onClick={handleClose}
-						to="/attendance"
+						to="/portal/attendance"
 						className="inline-flex w-100 link white hover-bg-blue pa1"
 						style={{ outline: "none" }}
 					>
@@ -53,7 +53,7 @@ const PhoneSideBar: React.FC = () => {
 					</Link>
 					<Link
 						onClick={handleClose}
-						to="/records"
+						to="/portal/records"
 						className="inline-flex w-100 link white hover-bg-blue pa1"
 						style={{ outline: "none" }}
 					>
@@ -62,7 +62,7 @@ const PhoneSideBar: React.FC = () => {
 					</Link>
 					<Link
 						onClick={handleClose}
-						to="/settings"
+						to="/portal/settings"
 						className="inline-flex w-100 link white hover-bg-blue pa1"
 						style={{ outline: "none" }}
 					>

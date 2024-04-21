@@ -12,7 +12,7 @@ const SideBar: React.FC = () => {
 	return (
 		<div className="flex flex-column vh-100">
 			<NavLink
-				to="/portal"
+				to="/portal/profile"
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
@@ -24,7 +24,7 @@ const SideBar: React.FC = () => {
 				<p className="ma0">Profile</p>
 			</NavLink>
 			<NavLink
-				to="/courses"
+				to="/portal/courses"
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
@@ -36,7 +36,7 @@ const SideBar: React.FC = () => {
 				<p className="ma0">Courses</p>
 			</NavLink>
 			<NavLink
-				to="/attendance"
+				to="/portal/attendance"
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
@@ -48,7 +48,7 @@ const SideBar: React.FC = () => {
 				<p className="ma0">Attendance</p>
 			</NavLink>
 			<NavLink
-				to="/records"
+				to="/portal/records"
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
@@ -60,7 +60,7 @@ const SideBar: React.FC = () => {
 				<p className="ma0">Attendance Records</p>
 			</NavLink>
 			<NavLink
-				to="/settings"
+				to="/portal/settings"
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
