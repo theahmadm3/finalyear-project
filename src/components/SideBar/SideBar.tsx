@@ -1,15 +1,17 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 
 const SideBar: React.FC = () => {
 	const linkStyles = {
 		outline: "none",
 	};
 
-	const userType = "student";
+	const { logout, isStudent } = useContext(AuthContext);
+
 	return (
 		<div className="flex flex-column vh-100">
-			{userType === "student" ? (
+			{isStudent ? (
 				<>
 					<NavLink
 						to="/portal"
@@ -71,10 +73,10 @@ const SideBar: React.FC = () => {
 						<i className="material-icons mr2">settings</i>
 						<p className="ma0">Settings</p>
 					</NavLink>
-					<Link to="/login" className="pa2 inline-flex link white items-center">
+					<div onClick={logout} className="inline-flex white pa2">
 						<i className="material-icons mr2">logout</i>
 						Logout
-					</Link>
+					</div>
 				</>
 			) : (
 				<>
@@ -126,10 +128,10 @@ const SideBar: React.FC = () => {
 						<i className="material-icons mr2">settings</i>
 						<p className="ma0">Settings</p>
 					</NavLink>
-					<Link to="/" className="link inline-flex white">
+					<div onClick={logout} className="inline-flex white pa2">
 						<i className="material-icons mr2">logout</i>
 						Logout
-					</Link>
+					</div>
 				</>
 			)}
 		</div>

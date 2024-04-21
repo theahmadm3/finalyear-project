@@ -1,12 +1,35 @@
-import React, { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { FormEvent, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 
-const InstructorLogin: React.FC = () => {
+const StudentLogin: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+	const [error, setError] = useState<string>("");
 
-	const handleLogin = (e: FormEvent) => {
+	const { studentLogin } = useContext(AuthContext);
+
+	const navigate = useNavigate()
+
+	const loginData = {
+		email: email.toLowerCase(),
+		password: password,
+	};
+
+	const handleLogin = async (e: FormEvent) => {
 		e.preventDefault();
+		try {
+			// Clear previous errors
+			setError("");
+			// Perform login
+			await studentLogin(loginData);
+			// Redirect or show success message
+			navigate('/portal')
+			
+		} catch (error) {
+			setError("Invalid email or password. Please try again.");
+			console.error("Login error:", error);
+		}
 	};
 
 	return (
@@ -21,12 +44,14 @@ const InstructorLogin: React.FC = () => {
 					<div className="pa2 w-100 f4">
 						<label htmlFor="email">Student Email</label>
 						<input
-							type="text"
+							type="email"
 							id="email"
 							className="pa2 w-100 br3 bg-white f4 black fluent-input bg-animate mt2"
 							placeholder="email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
+							required
+							autoComplete="on"
 						/>
 					</div>
 					<div className="pa2 w-100 f4">
@@ -38,8 +63,11 @@ const InstructorLogin: React.FC = () => {
 							placeholder="Password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
+							required
+							autoComplete="on"
 						/>
 					</div>
+					{error && <p className="red">{error}</p>}
 					<div className="pa2 mt4 flex justify-center items-center">
 						<button
 							type="submit"
@@ -60,4 +88,4 @@ const InstructorLogin: React.FC = () => {
 	);
 };
 
-export default InstructorLogin;
+export default StudentLogin;

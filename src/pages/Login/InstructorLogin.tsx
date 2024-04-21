@@ -1,12 +1,34 @@
-import React, { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { FormEvent, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 
 const InstructorLogin: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+	const [error, setError] = useState<string>("");
 
-	const handleLogin = (e: FormEvent) => {
+	const navigate = useNavigate();
+
+	const { login } = useContext(AuthContext);
+
+	const loginData = {
+		email: email.toLowerCase(),
+		password: password,
+	};
+
+	const handleLogin = async (e: FormEvent) => {
 		e.preventDefault();
+		try {
+			// Clear previous errors
+			setError("");
+			// Perform login
+			await login(loginData);
+			// Redirect or show success message
+			navigate("/portal");
+		} catch (error) {
+			setError("Invalid email or password. Please try again.");
+			console.error("Login error:", error);
+		}
 	};
 
 	return (
@@ -40,6 +62,7 @@ const InstructorLogin: React.FC = () => {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
+					{error && <p className="red">{error}</p>}
 					<div className="pa2 mt4 flex justify-center items-center">
 						<button
 							type="submit"

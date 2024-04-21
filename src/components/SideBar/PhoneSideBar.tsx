@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 
 const PhoneSideBar: React.FC = () => {
 	const [show, setShow] = useState<boolean>(false);
@@ -9,7 +10,7 @@ const PhoneSideBar: React.FC = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const userType = "student"; // TODO: get this dynamically
+	const { logout, isStudent } = useContext(AuthContext);
 
 	return (
 		<>
@@ -17,58 +18,116 @@ const PhoneSideBar: React.FC = () => {
 				<i className="material-icons white">menu</i>
 			</button>
 
-			{userType === "student" ? (
+			{isStudent ? (
 				<Offcanvas show={show} onHide={handleClose} className="w-50">
-					<Offcanvas.Header className='bg-dark-blue white' closeButton></Offcanvas.Header>
-					<Offcanvas.Body className='bg-dark-blue white'>
-						<Link to="/portal" className="inline-flex w-100 link white">
+					<Offcanvas.Header
+						className="bg-dark-blue white"
+						closeButton
+					></Offcanvas.Header>
+					<Offcanvas.Body className="bg-dark-blue white">
+						<Link
+							onClick={handleClose}
+							to="/portal"
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
 							<i className="material-icons mr2">account_circle</i>{" "}
-							<p>Profile</p>
+							<p className="ma0">Profile</p>
 						</Link>
-						<Link to="/portal" className="inline-flex w-100 link white">
+						<Link
+							onClick={handleClose}
+							to="/portal"
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
 							<i className="material-icons mr2">school</i>{" "}
-							<p>Courses</p>
+							<p className="ma0">Courses</p>
 						</Link>
-						<Link to="/portal" className="inline-flex w-100 link white">
+						<Link
+							onClick={handleClose}
+							to="/portal"
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
 							<i className="material-icons mr2">check_box</i>{" "}
-							<p>Attendance</p>
+							<p className="ma0">Attendance</p>
 						</Link>
-						<Link to="/portal" className="inline-flex w-100 link white">
+						<Link
+							onClick={handleClose}
+							to="/portal"
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
 							<i className="material-icons mr2">featured_play_list</i>{" "}
-							<p> Attendance Records</p>
+							<p className="ma0"> Attendance Records</p>
 						</Link>
-						<Link to="/portal" className="inline-flex w-100 link white">
+						<Link
+							onClick={handleClose}
+							to="/portal"
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
 							<i className="material-icons mr2">settings</i>{" "}
-							<p>Settings</p>
+							<p className="ma0">Settings</p>
 						</Link>
-						<Link to="/" className="inline-flex w-100 link white">
-							<i className="material-icons mr2">logout</i> <p>Logout</p>
-						</Link>
+						<div
+							onClick={logout}
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
+							<i className="material-icons mr2">logout</i>{" "}
+							<p className="ma0">Logout</p>
+						</div>
 					</Offcanvas.Body>
 				</Offcanvas>
 			) : (
 				<Offcanvas show={show} onHide={handleClose}>
 					<Offcanvas.Header closeButton></Offcanvas.Header>
 					<Offcanvas.Body>
-						<Link to="/portal" className="inline-flex w-100 link white">
+						<Link
+							onClick={handleClose}
+							to="/portal"
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
 							<i className="material-icons mr2">account_circle</i>{" "}
-							<p>Profile</p>
+							<p className="ma0">Profile</p>
 						</Link>
-						<Link to="/portal" className="inline-flex w-100 link white">
+						<Link
+							onClick={handleClose}
+							to="/portal"
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
 							<i className="material-icons mr2">school</i>{" "}
-							<p>Courses</p>
+							<p className="ma0">Courses</p>
 						</Link>
-						<Link to="/portal" className="inline-flex w-100 link white">
+						<Link
+							onClick={handleClose}
+							to="/portal"
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
 							<i className="material-icons mr2">check_box</i>{" "}
-							<p>Attendance</p>
+							<p className="ma0">Attendance</p>
 						</Link>
-						<Link to="/portal" className="inline-flex w-100 link white">
+						<Link
+							onClick={handleClose}
+							to="/portal"
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
 							<i className="material-icons mr2">settings</i>{" "}
-							<p>Settings</p>
+							<p className="ma0">Settings</p>
 						</Link>
-						<Link to="/" className="inline-flex w-100 link white">
-							<i className="material-icons mr2">logout</i> <p>Logout</p>
-						</Link>
+						<div
+							onClick={logout}
+							className="inline-flex w-100 link white hover-bg-blue pa1"
+							style={{ outline: "none" }}
+						>
+							<i className="material-icons mr2">logout</i>{" "}
+							<p className="ma0">Logout</p>
+						</div>
 					</Offcanvas.Body>
 				</Offcanvas>
 			)}
