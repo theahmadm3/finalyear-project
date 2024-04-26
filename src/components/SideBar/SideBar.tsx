@@ -7,12 +7,14 @@ const SideBar: React.FC = () => {
 		outline: "none",
 	};
 
-	const { logout } = useContext(AuthContext);
+	const { logout, isStudent } = useContext(AuthContext);
 
 	return (
 		<div className="flex flex-column vh-100">
 			<NavLink
-				to="/portal/profile"
+				to={`${
+					isStudent ? "/portal/student-profile" : "/portal/instructor-profile"
+				}`}
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive

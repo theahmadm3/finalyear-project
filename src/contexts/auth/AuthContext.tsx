@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext, useEffect, useState } from "react";
-import { capitalizeFirst } from "../../components/someFunctions/capitalizeFirst";
 
 interface UserData {
 	isStudent: boolean;
@@ -36,9 +35,11 @@ export const AuthContext = createContext<AuthContextType>({
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
-	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
-		!!localStorage.getItem("token"),
-	);
+	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
+		const token = localStorage.getItem("token");
+		return token !== null && token !== undefined;
+	});
+	console.log(isLoggedIn);
 	const [token, setToken] = useState<string | null>(
 		localStorage.getItem("token"),
 	); // Simplified token initialization
@@ -47,17 +48,19 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	const [authError, setAuthError] = useState<string>("Try again"); // Change to camelCase for consistency
 	const [isStudent, setIsStudent] = useState<boolean>(false);
 
-  //in case of refresh fetching user data and login state
+	//in case of refresh fetching user data and login state
 	useEffect(() => {
 		const checkIsLoggedIn = localStorage.getItem("token");
-		if (checkIsLoggedIn) {
+		if (checkIsLoggedIn && checkIsLoggedIn !== undefined) {
 			setToken(checkIsLoggedIn);
 			fetchStudentData(checkIsLoggedIn);
 			fetchInstructorData(checkIsLoggedIn);
+		} else {
+			setIsLoggedIn(false);
 		}
 	}, []);
 
-  //fetching student data
+	//fetching student data
 	const fetchStudentData = async (token: string) => {
 		try {
 			const response = await fetch(
@@ -81,7 +84,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 		}
 	};
 
-  //fetching instructor data
+	//fetching instructor data
 	const fetchInstructorData = async (token: string) => {
 		try {
 			const response = await fetch(
@@ -105,7 +108,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 		}
 	};
 
-  //Instructor login
+	//Instructor login
 	const login = async (credentials: { email: string; password: string }) => {
 		try {
 			const response = await fetch(
@@ -120,19 +123,20 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 			);
 
 			const data = await response.json();
-			const accessToken = data.access;
+			if (data.access) {
+				const accessToken = data.access;
 
-			// Store token in local storage
-			localStorage.setItem("token", accessToken);
+				// Store token in local storage
+				localStorage.setItem("token", accessToken);
 
-			setToken(accessToken);
-			fetchInstructorData(accessToken);
-			setIsLoggedIn(true);
-			setIsStudent(false);
-
-			return data; // Return any additional data if needed
-		} catch (error) {
-			console.error("Login failed:", error);
+				setToken(accessToken);
+				fetchInstructorData(accessToken);
+				setIsLoggedIn(true);
+				setIsStudent(false);
+				return data;
+			}
+		} catch (error: any) {
+			console.error("Login failed:", error.detail);
 			throw error;
 		}
 	};
@@ -154,21 +158,24 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 				},
 			);
 
-			const data = await response.json();
-			const accessToken = data.access;
+			const data: any = await response.json();
 
-			// Store token in local storage
-			localStorage.setItem("token", accessToken);
+			if (data.access) {
+				const accessToken = data.access;
 
-			setToken(accessToken);
-			fetchStudentData(accessToken);
-			setIsLoggedIn(true);
-			setIsStudent(true);
+				// Store token in local storage
+				localStorage.setItem("token", accessToken);
 
-			return data; // Return any additional data if needed
-		} catch (error) {
+				setToken(accessToken);
+				fetchStudentData(accessToken);
+				setIsLoggedIn(true);
+				setIsStudent(true);
+				return data;
+			}
+		} catch (error: any) {
 			console.error("Login failed:", error);
-			throw error; // Re-throw the error for handling in the component
+			setAuthError(error.detail);
+			throw error;
 		}
 	};
 

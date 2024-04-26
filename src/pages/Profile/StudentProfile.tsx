@@ -32,7 +32,7 @@ const StudentProfile: React.FC = () => {
 			<section className="profile w-100 flex flex-row-ns items-center-ns flex-column-s pa2">
 				<div
 					style={profilePic}
-					className="b-circle flex justify-center ba pa2 mr3"
+					className="b-circle shadow-1 flex justify-center ba pa2 mr3"
 				></div>
 				<br className="dn-ns"></br>
 				<div className="ml3-ns">
@@ -48,7 +48,7 @@ const StudentProfile: React.FC = () => {
 					</p>
 				</div>
 			</section>
-			<section className="about w-80-l br3 ba b--moon-gray">
+			<section className="about w-80-l br3 shadow-1 bg-dark-blue white">
 				<div className="pa1 pl2 pr2 inline-flex items-center justify-between w-100 bb b--moon-gray">
 					<p className="f4-ns b">About Me</p>
 					<p className="b">Edit</p>

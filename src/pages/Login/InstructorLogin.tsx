@@ -6,6 +6,7 @@ const InstructorLogin: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [error, setError] = useState<string>("");
+	const [disableButton, setDisableButton] = useState<boolean>(false);
 
 	const navigate = useNavigate();
 
@@ -18,30 +19,31 @@ const InstructorLogin: React.FC = () => {
 
 	const handleLogin = async (e: FormEvent) => {
 		e.preventDefault();
+
+		setDisableButton(true);
+
 		try {
-			// Clear previous errors
-			setError("");
-			// Perform login
-			await login(loginData);
+			const data = await login(loginData);
 			// Redirect or show success message
-			navigate("/portal/profile");
+			navigate("/portal/instructor-profile");
 		} catch (error) {
 			setError("Invalid email or password. Please try again.");
 			console.error("Login error:", error);
+		} finally {
+			setDisableButton(false);
 		}
 	};
 
 	return (
 		<div className="overflow-auto bg-dark-blue flex flex-row-ns flex-column-s justify-between-ns justify-center w-100 vh-100">
-			<div className="w-50-m w-60-l dn-s"></div>
-			<div className="w-50-m w-40-l pa2 flex-ns justify-center-ns items-center-ns bg-black-40">
+			<div className="w-50-m w-40-l center pa2 flex-ns justify-center-ns items-center-ns">
 				<form
 					onSubmit={handleLogin}
-					className="pa2 shadow-1 br3 w-70-l w-100 white"
+					className="pa5-ns pa2 shadow-1 br3 w-70-l w-100 white"
 				>
 					<h2 className="tc">Instructor Login</h2>
 					<div className="pa2 w-100 f4">
-						<label htmlFor="email">Email</label>
+						<label htmlFor="email">Email *</label>
 						<input
 							type="text"
 							id="email"
@@ -52,7 +54,7 @@ const InstructorLogin: React.FC = () => {
 						/>
 					</div>
 					<div className="pa2 w-100 f4">
-						<label htmlFor="password">Password</label>
+						<label htmlFor="password">Password *</label>
 						<input
 							type="password"
 							id="password"
@@ -66,10 +68,14 @@ const InstructorLogin: React.FC = () => {
 					<div className="pa2 mt4 flex justify-center items-center">
 						<button
 							type="submit"
-							className="w-fc bn bg-blue white pointer pa2 pl3 pr3 br2"
+							disabled={disableButton}
+							className={
+								disableButton
+									? "w-100 pa3 pointer grow bn bg-light-blue white br2"
+									: "w-100 pa3 pointer grow bn bg-blue white br2"
+							}
 						>
-							{" "}
-							Login{" "}
+							{!disableButton ? "Login" : "Logging in..."}
 						</button>
 					</div>
 					<div className="pa2 mt4 flex justify-center items-center">

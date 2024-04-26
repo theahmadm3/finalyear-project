@@ -38,18 +38,18 @@ const Home: React.FC = () => {
 
 	useEffect(() => {
 		if (!isLoggedIn) {
-			navigate("/");
+			navigate("/student-login");
 		}
 	}, [isLoggedIn, navigate]);
 
 	return isLoggedIn ? (
 		windowSize.width < 1000 ? (
 			// View for smaller screens (mostly phones and tablets)
-			<div className="w-100 sticky top-0 bottom-0 flex flex-column">
+			<div className="w-100 sticky top-0 bottom-0 flex flex-column vh-100">
 				<div className="bg-dark-blue white z-5 sticky top-0 left-0 w-100 inline-flex justify-between pa2">
 					<PhoneHeader />
 				</div>
-				<div className="w-100 bg-blue white overflow-scroll">
+				<div className="w-100 overflow-scroll bg-white-20">
 					<Outlet />
 				</div>
 			</div>
