@@ -8,18 +8,20 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "bootstrap";
 import "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'tachyons'
+import "tachyons";
 
 import AuthProvider from "./contexts/auth/AuthContext.tsx";
+import Lecturer from "./contexts/auth/Lecturer.tsx";
 
 import App from "./App.tsx";
 import InstructorLogin from "./pages/Login/InstructorLogin.tsx";
 import StudentLogin from "./pages/Login/StudentLogin.tsx";
 import Home from "./pages/HomePage/Home.tsx";
-import Courses from "./pages/Courses/Courses.tsx";
 import ErrorLoading from "./components/Loader/ErrorLoading.tsx";
 import StudentProfile from "./pages/Profile/StudentProfile.tsx";
 import InstructorProfile from "./pages/Profile/LecturerProfile.tsx";
+import StudentCourses from "./pages/Courses/StudentCourses.tsx";
+import InstructorCourses from "./pages/Courses/InstructorCourses.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -47,8 +49,12 @@ const router = createBrowserRouter([
 				element: <InstructorProfile />,
 			},
 			{
-				path: "courses",
-				element: <Courses />,
+				path: "courses-learning",
+				element: <StudentCourses />,
+			},
+			{
+				path: "courses-teaching",
+				element: <InstructorCourses />,
 			},
 		],
 	},
@@ -61,7 +67,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
 		<AuthProvider>
-			<RouterProvider router={router} />
+			<Lecturer>
+				<RouterProvider router={router} />
+			</Lecturer>
 		</AuthProvider>
 	</React.StrictMode>,
 );

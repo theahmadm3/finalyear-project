@@ -7,6 +7,9 @@ const StudentProfile: React.FC = () => {
 	const { user } = useContext(AuthContext);
 	const [waiting, setWaiting] = useState(true);
 
+	const profilePicture =
+		"https://images.unsplash.com/photo-1471123327422-e370dc57a3da";
+
 	useEffect(() => {
 		// When user context value becomes available, update waiting state
 		if (user !== null) {
@@ -15,7 +18,7 @@ const StudentProfile: React.FC = () => {
 	}, [user]); // Update waiting state when user changes
 
 	const profilePic = {
-		backgroundImage: `url(${ProfileImage})`,
+		backgroundImage: `url(${profilePicture})`,
 		backgroundPosition: "center",
 		backgroundSize: "cover",
 		backgroundRepeat: "no-repeat",
@@ -39,8 +42,8 @@ const StudentProfile: React.FC = () => {
 					<p className="b ">
 						{user.first_name} {user.last_name}
 					</p>
-					<p className="f7-l">Student | Year {user.level}</p> <br />
-					<p className="f7-l w-100">
+					<p className="">Student | Year {user.level}</p> <br />
+					<p className="w-100">
 						<span className="b">ID:</span> {user.student_id}{" "}
 						<span className="dn-s">|</span> <br className="dn-ns"></br>
 						<br className="dn-ns"></br> <span className="b">Department:</span>{" "}
@@ -48,7 +51,8 @@ const StudentProfile: React.FC = () => {
 					</p>
 				</div>
 			</section>
-			<section className="about w-80-l br3 shadow-1 bg-dark-blue white">
+				<br className="dn-s"></br>
+			<section className="about w-80-l br3 shadow-1 bg-dark-blue white pa2-ns">
 				<div className="pa1 pl2 pr2 inline-flex items-center justify-between w-100 bb b--moon-gray">
 					<p className="f4-ns b">About Me</p>
 					<p className="b">Edit</p>

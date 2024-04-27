@@ -10,7 +10,8 @@ const SideBar: React.FC = () => {
 	const { logout, isStudent } = useContext(AuthContext);
 
 	return (
-		<div className="flex flex-column vh-100">
+		<div className="flex flex-column justify-between vh-90">
+			<div className='flex flex-column'>
 			<NavLink
 				to={`${
 					isStudent ? "/portal/student-profile" : "/portal/instructor-profile"
@@ -18,20 +19,22 @@ const SideBar: React.FC = () => {
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
-						? "pa2 inline-flex link white bg-white blue items-center"
-						: "pa2 inline-flex link white items-center"
+						? "pa2 inline-flex mb2 link white bg-white bg-animate blue items-center br3"
+						: "pa2 inline-flex mb2 link white items-center"
 				}
 			>
 				<i className="material-icons mr2">account_circle</i>
 				<p className="ma0">Profile</p>
 			</NavLink>
 			<NavLink
-				to="/portal/courses"
+				to={`${
+					isStudent ? "/portal/courses-learning" : "/portal/courses-teaching"
+				}`}
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
-						? "pa2 inline-flex link white bg-white blue items-center"
-						: "pa2 inline-flex link white items-center"
+						? "pa2 inline-flex mb2 link white bg-white bg-animate blue items-center br3"
+						: "pa2 inline-flex mb2 link white items-center"
 				}
 			>
 				<i className="material-icons mr2">school</i>
@@ -42,8 +45,8 @@ const SideBar: React.FC = () => {
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
-						? "pa2 inline-flex link white bg-white blue items-center"
-						: "pa2 inline-flex link white items-center"
+						? "pa2 inline-flex mb2 link white bg-white bg-animate blue items-center br3"
+						: "pa2 inline-flex mb2 link white items-center"
 				}
 			>
 				<i className="material-icons mr2">check_box</i>
@@ -54,8 +57,8 @@ const SideBar: React.FC = () => {
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
-						? "pa2 inline-flex link white bg-white blue items-center"
-						: "pa2 inline-flex link white items-center"
+						? "pa2 inline-flex mb2 link white bg-white bg-animate blue items-center br3"
+						: "pa2 inline-flex mb2 link white items-center"
 				}
 			>
 				<i className="material-icons mr2">featured_play_list</i>
@@ -66,16 +69,19 @@ const SideBar: React.FC = () => {
 				style={linkStyles}
 				className={({ isActive }) =>
 					isActive
-						? "pa2 inline-flex link white bg-white blue items-center"
-						: "pa2 inline-flex link white items-center"
+						? "pa2 inline-flex mb2 link white bg-white bg-animate blue items-center br3"
+						: "pa2 inline-flex mb2 link white items-center"
 				}
 			>
 				<i className="material-icons mr2">settings</i>
 				<p className="ma0">Settings</p>
 			</NavLink>
-			<div onClick={logout} className="inline-flex white pa2 pointer">
+			</div>
+			<div className='w-100 pointer'>
+			<div onClick={logout} className="w-100 pa2 inline-flex mb2 link white bg-blue bg-animate br3 items-center">
 				<i className="material-icons mr2">logout</i>
 				Logout
+			</div>
 			</div>
 		</div>
 	);

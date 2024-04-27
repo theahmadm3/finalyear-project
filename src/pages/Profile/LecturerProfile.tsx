@@ -1,18 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import ProfileImage from "../../assets/react.svg";
-import { AuthContext } from "../../contexts/auth/AuthContext";
 import Loader from "../../components/Loader/Loader";
+import { LecturerContext } from "../../contexts/auth/Lecturer";
 
 const InstructorProfile: React.FC = () => {
-	const { instructor } = useContext(AuthContext);
+	const { instructor } = useContext(LecturerContext);
 	const [waiting, setWaiting] = useState(true);
-
-	useEffect(() => {
-		// When instructor context value becomes available, update waiting state
-		if (instructor !== null) {
-			setWaiting(false);
-		}
-	}, [instructor]); // Update waiting state when instructor changes
 
 	const profilePic = {
 		backgroundImage: `url(${ProfileImage})`,
@@ -21,10 +14,17 @@ const InstructorProfile: React.FC = () => {
 		backgroundRepeat: "no-repeat",
 	};
 
+	useEffect(() => {
+		// When instructor context value becomes available, update waiting state
+		if (instructor !== null && instructor !== undefined) {
+			setWaiting(false);
+		}
+	}, [instructor]); // Update waiting state when instructor changes
+
 	if (waiting) {
 		return <Loader />;
 	}
-    console.log(instructor)
+	console.log(instructor);
 
 	return (
 		<div className="w-100 flex flex-column pa2">
@@ -36,10 +36,11 @@ const InstructorProfile: React.FC = () => {
 				<br className="dn-ns"></br>
 				<div className="ml3-ns">
 					<p className="b ">
-						{instructor.first_name} {instructor.last_name}
+						{/* {instructor.first_name} {instructor.last_name} */}
 					</p>
 					<p className="">
-						<span className="b">Department:</span>{instructor.department}
+						<span className="b">Department:</span>
+						{/* {instructor.department} */}
 					</p>
 				</div>
 			</section>
@@ -51,11 +52,11 @@ const InstructorProfile: React.FC = () => {
 				<div className="pa2 flex flex-row-ns justify-between-ns flex-column-s w-100">
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Country</p>
-						<p>{instructor.country}</p>
+						{/* <p>{instructor.country}</p> */}
 					</div>
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Phone</p>
-						<p>{instructor.phone_number}</p>
+						{/* <p>{instructor.phone_number}</p> */}
 					</div>
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Email</p>

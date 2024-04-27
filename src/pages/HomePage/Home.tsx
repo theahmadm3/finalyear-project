@@ -57,14 +57,14 @@ const Home: React.FC = () => {
 			// View for larger screens (mostly computers)
 			<div className="w-100 vh-100 inline-flex justify-between sticky top-0 bottom-0 overflow-hidden">
 				<div className="w-25 pa2 bg-dark-blue white">
-					<p>Menu</p>
+					<p className='mb4 flex items-center justify-center f3'>MJ University</p>
 					<SideBar />
 				</div>
-				<div className="w-75 bg-blue white flex flex-column pa2 overflow-auto">
+				<div className="w-75 bg-blue white flex flex-column overflow-auto">
 					<div className="sticky top-0 left-0 w-100">
 						<Header />
 					</div>
-					<section className="w-100 overflow-auto">
+					<section className="w-100 overflow-auto pa2">
 						<Outlet />
 					</section>
 				</div>

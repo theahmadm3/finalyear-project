@@ -51,10 +51,11 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	//in case of refresh fetching user data and login state
 	useEffect(() => {
 		const checkIsLoggedIn = localStorage.getItem("token");
+
 		if (checkIsLoggedIn && checkIsLoggedIn !== undefined) {
 			setToken(checkIsLoggedIn);
+
 			fetchStudentData(checkIsLoggedIn);
-			fetchInstructorData(checkIsLoggedIn);
 		} else {
 			setIsLoggedIn(false);
 		}
@@ -184,6 +185,8 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 		localStorage.removeItem("token");
 		setIsLoggedIn(false);
 	};
+
+	console.log(isStudent);
 
 	return (
 		<AuthContext.Provider
