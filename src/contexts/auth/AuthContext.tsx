@@ -39,7 +39,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 		const token = localStorage.getItem("token");
 		return token !== null && token !== undefined;
 	});
-	console.log(isLoggedIn);
+
 	const [token, setToken] = useState<string | null>(
 		localStorage.getItem("token"),
 	); // Simplified token initialization
@@ -79,7 +79,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 			const userData = data.user;
 			setUser(userData);
 			setIsStudent(userData.is_student);
-			console.log(data);
 		} catch (error) {
 			console.error("Error fetching user data: ", error);
 		}
@@ -103,7 +102,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 			const userData = data.user;
 			setInstructor(userData);
 			setIsStudent(false);
-			console.log(data);
 		} catch (error) {
 			console.error("Error fetching user data: ", error);
 		}
@@ -184,9 +182,8 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	const logout = () => {
 		localStorage.removeItem("token");
 		setIsLoggedIn(false);
+		window.location.reload();
 	};
-
-	console.log(isStudent);
 
 	return (
 		<AuthContext.Provider
