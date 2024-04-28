@@ -10,7 +10,7 @@ const PhoneSideBar: React.FC = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const { logout, isStudent } = useContext(AuthContext);
+	const { logout } = useContext(AuthContext);
 
 	return (
 		<>
@@ -32,11 +32,7 @@ const PhoneSideBar: React.FC = () => {
 				<Offcanvas.Body className="bg-dark-blue white">
 					<Link
 						onClick={handleClose}
-						to={`${
-							isStudent
-								? "/portal/student-profile"
-								: "/portal/instructor-profile"
-						}`}
+						to="/portal/profile"
 						className="inline-flex w-100 link white hover-bg-blue pa1"
 						style={{ outline: "none" }}
 					>
@@ -45,11 +41,7 @@ const PhoneSideBar: React.FC = () => {
 					</Link>
 					<Link
 						onClick={handleClose}
-						to={`${
-							isStudent
-								? "/portal/courses-learning"
-								: "/portal/courses-teaching"
-						}`}
+						to="/portal/courses"
 						className="inline-flex w-100 link white hover-bg-blue pa1"
 						style={{ outline: "none" }}
 					>

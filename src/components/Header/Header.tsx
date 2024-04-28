@@ -14,14 +14,16 @@ const Header: React.FC = () => {
 		}
 	}, [user]); // Update waiting state when user or instructor changes
 
-	const profilePicture =
-		"https://images.unsplash.com/photo-1471123327422-e370dc57a3da";
+	const profilePicture = `https://robohash.org/${
+		waiting ? "" : user.first_name
+	}`;
 
 	const profilePic = {
 		backgroundImage: `url(${profilePicture})`,
 		backgroundPosition: "center",
 		backgroundSize: "cover",
 		backgroundRepeat: "no-repeat",
+		backgroundColor: "gray",
 		width: "50px",
 		height: "50px",
 		border: "1px solid white",

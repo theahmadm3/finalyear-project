@@ -5,8 +5,14 @@ import { AuthContext } from "../../contexts/auth/AuthContext";
 import { LecturerContext } from "../../contexts/auth/Lecturer";
 
 const PhoneHeader: React.FC = () => {
-	const profilePicture =
-		"https://images.unsplash.com/photo-1471123327422-e370dc57a3da";
+	const { user } = useContext(AuthContext);
+	const { instructor } = useContext(LecturerContext);
+
+	const [waiting, setWaiting] = useState(true);
+
+	const profilePicture = `https://robohash.org/${
+		waiting ? "" : user.first_name
+	}`;
 
 	const profilePic = {
 		backgroundImage: `url(${profilePicture})`,
@@ -18,10 +24,6 @@ const PhoneHeader: React.FC = () => {
 		border: "1px solid white",
 		borderRadius: "50%",
 	};
-	const { user } = useContext(AuthContext);
-	const { instructor } = useContext(LecturerContext);
-
-	const [waiting, setWaiting] = useState(true);
 
 	useEffect(() => {
 		// When user or instructor context value becomes available, update waiting state

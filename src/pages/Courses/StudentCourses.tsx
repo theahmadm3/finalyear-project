@@ -49,9 +49,17 @@ const StudentCourses: React.FC = () => {
 			) : errorLoading ? (
 				<p>Refresh the page, if not sign out and sign in again</p>
 			) : (
-				courses.map((course, index) => {
-					return <p key={index}>{JSON.stringify(course) + "\n"}</p>;
-				})
+				<div className="flex flex-row flex-wrap justify-between w-100 pa4-l pa3">
+					{courses.map((course, index) => {
+						return (
+							<div key={index} className="pa2 shadow-1 br4 w-45">
+								Name : {course.title} <br />
+								Code: {course.course_code} <br />
+								Lecturer Email: {course.email} <br />
+							</div>
+						);
+					})}
+				</div>
 			)}
 		</>
 	);

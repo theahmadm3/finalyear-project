@@ -10,8 +10,6 @@ const SideBar: React.FC = () => {
 
 	const { logout } = useContext(AuthContext);
 
-	
-
 	return (
 		<div className="flex flex-column justify-between vh-90">
 			<div className="flex flex-column">

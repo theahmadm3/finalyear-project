@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import Header from "../../components/Header/Header";
 import SideBar from "../../components/SideBar/SideBar";
@@ -15,6 +15,7 @@ const Home: React.FC = () => {
 	const { isLoggedIn } = useContext(AuthContext);
 
 	const navigate = useNavigate();
+	const { pathname } = useLocation();
 
 	const [windowSize, setWindowSize] = useState<WindowSize>({
 		width: window.innerWidth,
@@ -38,9 +39,9 @@ const Home: React.FC = () => {
 
 	useEffect(() => {
 		if (!isLoggedIn) {
-			navigate("/student-login");
+			navigate(pathname ===  "/login" ? "/login" : "/login");
 		}
-	}, [isLoggedIn, navigate]);
+	}, [isLoggedIn, navigate, pathname]);
 
 	return isLoggedIn ? (
 		windowSize.width < 1000 ? (
@@ -57,7 +58,9 @@ const Home: React.FC = () => {
 			// View for larger screens (mostly computers)
 			<div className="w-100 vh-100 inline-flex justify-between sticky top-0 bottom-0 overflow-hidden">
 				<div className="w-25 pa2 bg-dark-blue white">
-					<p className='mb4 flex items-center justify-center f3'>MJ University</p>
+					<p className="mb4 flex items-center justify-center f3">
+						MJ University
+					</p>
 					<SideBar />
 				</div>
 				<div className="w-75 flex flex-column overflow-auto">

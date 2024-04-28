@@ -7,9 +7,6 @@ const StudentProfile: React.FC = () => {
 	const { user } = useContext(AuthContext);
 	const [waiting, setWaiting] = useState(true);
 
-	const profilePicture =
-		"https://images.unsplash.com/photo-1471123327422-e370dc57a3da";
-
 	useEffect(() => {
 		// When user context value becomes available, update waiting state
 		if (user !== null) {
@@ -17,16 +14,19 @@ const StudentProfile: React.FC = () => {
 		}
 	}, [user]); // Update waiting state when user changes
 
+	if (waiting) {
+		return <Loader />;
+	}
+
+	const profilePicture = `https://robohash.org/${user.first_name}`;
+
 	const profilePic = {
 		backgroundImage: `url(${profilePicture})`,
 		backgroundPosition: "center",
 		backgroundSize: "cover",
 		backgroundRepeat: "no-repeat",
+		backgroundColor: "gray",
 	};
-
-	if (waiting) {
-		return <Loader />;
-	}
 
 	return (
 		<div className="w-100 flex flex-column pa2 min-vh-100">
@@ -49,7 +49,7 @@ const StudentProfile: React.FC = () => {
 					</p>
 				</div>
 			</section>
-				<br className="dn-s"></br>
+			<br className="dn-s"></br>
 			<section className="about w-80-l br3 shadow-1 bg-dark-blue white pa2-ns">
 				<div className="pa1 pl2 pr2 inline-flex items-center justify-between w-100 bb b--moon-gray">
 					<p className="f4-ns b">About Me</p>
