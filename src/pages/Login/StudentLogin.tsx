@@ -28,7 +28,7 @@ const StudentLogin: React.FC = () => {
 			const data: any = await studentLogin(loginData);
 			if (data.access) {
 				// Redirect or show success message
-				navigate("/portal/student-profile");
+				navigate("/portal/profile");
 			} else {
 				throw new Error("error logging");
 			}

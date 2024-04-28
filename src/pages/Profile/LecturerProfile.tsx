@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import ProfileImage from "../../assets/react.svg";
 import Loader from "../../components/Loader/Loader";
-import { LecturerContext } from "../../contexts/auth/Lecturer";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 
 const InstructorProfile: React.FC = () => {
-	const { instructor } = useContext(LecturerContext);
+	const { user } = useContext(AuthContext);
 	const [waiting, setWaiting] = useState(true);
 
 	const profilePic = {
@@ -16,15 +16,14 @@ const InstructorProfile: React.FC = () => {
 
 	useEffect(() => {
 		// When instructor context value becomes available, update waiting state
-		if (instructor !== null && instructor !== undefined) {
+		if (user !== null && user !== undefined) {
 			setWaiting(false);
 		}
-	}, [instructor]); // Update waiting state when instructor changes
+	}, [user]); // Update waiting state when user changes
 
 	if (waiting) {
 		return <Loader />;
 	}
-	console.log(instructor);
 
 	return (
 		<div className="w-100 flex flex-column pa2">
@@ -36,11 +35,11 @@ const InstructorProfile: React.FC = () => {
 				<br className="dn-ns"></br>
 				<div className="ml3-ns">
 					<p className="b ">
-						{/* {instructor.first_name} {instructor.last_name} */}
+						{/* {user.first_name} {user.last_name} */}
 					</p>
 					<p className="">
 						<span className="b">Department:</span>
-						{/* {instructor.department} */}
+						{/* {user.department} */}
 					</p>
 				</div>
 			</section>
@@ -52,15 +51,15 @@ const InstructorProfile: React.FC = () => {
 				<div className="pa2 flex flex-row-ns justify-between-ns flex-column-s w-100">
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Country</p>
-						{/* <p>{instructor.country}</p> */}
+						{/* <p>{user.country}</p> */}
 					</div>
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Phone</p>
-						{/* <p>{instructor.phone_number}</p> */}
+						{/* <p>{user.phone_number}</p> */}
 					</div>
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Email</p>
-						<p>{instructor.email}</p>
+						<p>{user.email}</p>
 					</div>
 				</div>
 			</section>

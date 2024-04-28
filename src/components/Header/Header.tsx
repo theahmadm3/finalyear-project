@@ -1,23 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import { AuthContext } from "../../contexts/auth/AuthContext";
-import { LecturerContext } from "../../contexts/auth/Lecturer";
 
 const Header: React.FC = () => {
-	const { user, isStudent } = useContext(AuthContext);
-	const { instructor } = useContext(LecturerContext);
+	const { user } = useContext(AuthContext);
 
 	const [waiting, setWaiting] = useState(true);
 
-	const profilePicture =
-		"https://images.unsplash.com/photo-1471123327422-e370dc57a3da";
-
 	useEffect(() => {
-		// When user context value becomes available, update waiting state
-		if (user !== null || instructor !== null) {
+		// When either user or instructor context value becomes available, update waiting state
+		if (user !== null) {
 			setWaiting(false);
 		}
-	}, [user, instructor]); // Update waiting state when user changes
+	}, [user]); // Update waiting state when user or instructor changes
+
+	const profilePicture =
+		"https://images.unsplash.com/photo-1471123327422-e370dc57a3da";
 
 	const profilePic = {
 		backgroundImage: `url(${profilePicture})`,
@@ -30,14 +28,13 @@ const Header: React.FC = () => {
 		borderRadius: "50%",
 	};
 
-	if (waiting) {
-		return (
-			<div className="w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3"></div>
-		);
-	}
 	return (
-		<div className="w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3 pl3 pr3">
-			<p>Welcome {isStudent ? user.first_name : instructor.first_name}</p>
+		<div
+			className={`w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3 pl3 pr3 ${
+				waiting ? "" : "pl3 pr3"
+			}`}
+		>
+			<p>Welcome, {waiting ? "" : user?.first_name}</p>
 			<div
 				style={profilePic}
 				className="shadow-1 flex justify-center ba pa2 mr3"

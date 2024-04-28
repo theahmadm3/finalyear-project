@@ -60,8 +60,8 @@ const Home: React.FC = () => {
 					<p className='mb4 flex items-center justify-center f3'>MJ University</p>
 					<SideBar />
 				</div>
-				<div className="w-75 bg-blue white flex flex-column overflow-auto">
-					<div className="sticky top-0 left-0 w-100">
+				<div className="w-75 flex flex-column overflow-auto">
+					<div className="sticky white top-0 left-0 w-100">
 						<Header />
 					</div>
 					<section className="w-100 overflow-auto pa2">

@@ -5,23 +5,21 @@ import InstructorProfile from "./LecturerProfile";
 import Loader from "../../components/Loader/Loader";
 
 const Profile: React.FC = () => {
-	const { isStudent } = useContext(AuthContext);
+	const { user } = useContext(AuthContext);
 	const [waiting, setWaiting] = useState(true);
 
 	useEffect(() => {
 		// When isStudent context value becomes available, update waiting state
-		if (isStudent !== undefined) {
+		if (user !== undefined && user !== null) {
 			setWaiting(false);
 		}
-	}, [isStudent]); // Update waiting state when isStudent changes
-
-	console.log(isStudent)
+	}, [user]); // Update waiting state when isStudent changes
 
 	if (waiting) {
 		return <Loader />;
 	}
 
-	return isStudent ? <StudentProfile /> : <InstructorProfile />;
+	return user.is_student ? <StudentProfile /> : <InstructorProfile />;
 };
 
 export default Profile;

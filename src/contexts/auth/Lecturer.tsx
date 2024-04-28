@@ -24,7 +24,7 @@ const Lecturer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 		const token = localStorage.getItem("token");
 		return token !== null && token !== undefined;
 	});
-	console.log(isLoggedIn);
+
 	const [token, setToken] = useState<string | null>(
 		localStorage.getItem("token"),
 	); // Simplified token initialization
@@ -60,7 +60,6 @@ const Lecturer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 			const userData = data.user;
 			setInstructor(userData);
 			setIsStudent(false);
-			console.log(data);
 		} catch (error) {
 			console.error("Error fetching user data: ", error);
 		}

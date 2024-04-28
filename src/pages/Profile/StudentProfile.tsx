@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import ProfileImage from "../../assets/react.svg";
+
 import { AuthContext } from "../../contexts/auth/AuthContext";
 import Loader from "../../components/Loader/Loader";
 
@@ -23,8 +23,6 @@ const StudentProfile: React.FC = () => {
 		backgroundSize: "cover",
 		backgroundRepeat: "no-repeat",
 	};
-
-	console.log(user);
 
 	if (waiting) {
 		return <Loader />;
