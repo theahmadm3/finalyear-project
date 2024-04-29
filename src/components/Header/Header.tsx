@@ -9,10 +9,16 @@ const Header: React.FC = () => {
 
 	useEffect(() => {
 		// When either user or instructor context value becomes available, update waiting state
-		if (user !== null) {
+		if (user !== null || user !== undefined) {
 			setWaiting(false);
 		}
 	}, [user]); // Update waiting state when user or instructor changes
+
+	if (!user) {
+		return (
+			<div className="w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3 pl3 pr3"></div>
+		);
+	}
 
 	const profilePicture = `https://robohash.org/${
 		waiting ? "" : user.first_name
@@ -31,12 +37,8 @@ const Header: React.FC = () => {
 	};
 
 	return (
-		<div
-			className={`w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3 pl3 pr3 ${
-				waiting ? "" : "pl3 pr3"
-			}`}
-		>
-			<p>Welcome, {waiting ? "" : user?.first_name}</p>
+		<div className="w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3 pl3 pr3">
+			<p className="pt2">Welcome, {user.first_name}</p>
 			<div
 				style={profilePic}
 				className="shadow-1 flex justify-center ba pa2 mr3"

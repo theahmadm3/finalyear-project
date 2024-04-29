@@ -1,9 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext, useEffect, useState } from "react";
 
+interface User {
+	first_name: string;
+	last_name: string;
+	level: number;
+	student_id: number;
+	is_student: boolean;
+	department: string;
+	country: string;
+	email: string;
+	phone_number: string;
+}
+
 interface AuthContextType {
 	isLoggedIn: boolean;
-	user: null;
+	user: User | null;
 	token: string | null;
 	login: (credentials: { email: string; password: string }) => Promise<void>; // Adjust return type
 	studentLogin: (credentials: {
@@ -17,7 +29,6 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType>({
 	isLoggedIn: false,
 	user: null,
-
 	token: null,
 	login: async () => {},
 	logout: () => {},
@@ -36,7 +47,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	const [token, setToken] = useState<string | null>(
 		localStorage.getItem("token"),
 	); // Simplified token initialization
-	const [user, setUser] = useState<null>(null);
+	const [user, setUser] = useState<User | null>(null);
 
 	const [authError, setAuthError] = useState<string>("Try again"); // Change to camelCase for consistency
 
@@ -101,7 +112,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 				return data;
 			}
 		} catch (error: any) {
-			console.error("Login failed:", error.detail);
+			console.error("Login failed:", error);
 			throw error;
 		}
 	};
@@ -138,7 +149,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 			}
 		} catch (error: any) {
 			console.error("Login failed:", error);
-			setAuthError(error.detail);
+			setAuthError(error);
 			throw error;
 		}
 	};

@@ -19,7 +19,7 @@ const Profile: React.FC = () => {
 		return <Loader />;
 	}
 
-	return user.is_student ? <StudentProfile /> : <InstructorProfile />;
+	return user?.is_student ? <StudentProfile /> : <InstructorProfile />;
 };
 
 export default Profile;

@@ -10,7 +10,7 @@ const Courses: React.FC = () => {
 
 	useEffect(() => {
 		// When isStudent context value becomes available, update waiting state
-		if (user !== undefined && user !== null) {
+		if (user !== null) {
 			setWaiting(false);
 		}
 	}, [user]); // Update waiting state when isStudent changes
@@ -19,7 +19,7 @@ const Courses: React.FC = () => {
 		return <Loader />;
 	}
 
-	return user.is_student ? <StudentCourses /> : <InstructorCourses />;
+	return user?.is_student ? <StudentCourses /> : <InstructorCourses />;
 };
 
 export default Courses;

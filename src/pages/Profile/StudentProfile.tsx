@@ -14,11 +14,13 @@ const StudentProfile: React.FC = () => {
 		}
 	}, [user]); // Update waiting state when user changes
 
-	if (waiting) {
+	if (!user) {
 		return <Loader />;
 	}
 
-	const profilePicture = `https://robohash.org/${user.first_name}`;
+	const profilePicture = `https://robohash.org/${
+		waiting ? "" : user.first_name
+	}`;
 
 	const profilePic = {
 		backgroundImage: `url(${profilePicture})`,

@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth/AuthContext";
-import Loader from "../Loader/Loader";
 
 const SideBar: React.FC = () => {
 	const linkStyles = {

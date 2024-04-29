@@ -3,7 +3,9 @@ import Loader from "../../components/Loader/Loader";
 import { AuthContext } from "../../contexts/auth/AuthContext";
 
 interface Course {
-	title: string; // Changed from "name" to "title" to match the data structure
+	title: string;
+	course_code: string;
+	email: string;
 }
 
 const StudentCourses: React.FC = () => {
