@@ -14,14 +14,14 @@ const Header: React.FC = () => {
 		}
 	}, [user]); // Update waiting state when user or instructor changes
 
-	if (!user) {
+	if (waiting) {
 		return (
 			<div className="w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3 pl3 pr3"></div>
 		);
 	}
 
 	const profilePicture = `https://robohash.org/${
-		waiting ? "" : user.first_name
+		waiting ? "" : user?.first_name
 	}`;
 
 	const profilePic = {
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
 
 	return (
 		<div className="w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3 pl3 pr3">
-			<p className="pt2">Welcome, {user.first_name}</p>
+			<p className="pt2">Welcome, {user?.first_name}</p>
 			<div
 				style={profilePic}
 				className="shadow-1 flex justify-center ba pa2 mr3"

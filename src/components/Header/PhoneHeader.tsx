@@ -15,14 +15,14 @@ const PhoneHeader: React.FC = () => {
 		}
 	}, [user]); // Update waiting state when user or instructor changes
 
-	if (!user) {
+	if (waiting) {
 		return (
 			<div className="w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3"></div>
 		);
 	}
 
 	const profilePicture = `https://robohash.org/${
-		waiting ? "" : user.first_name
+		waiting ? "" : user?.first_name
 	}`;
 
 	const profilePic = {
@@ -39,7 +39,7 @@ const PhoneHeader: React.FC = () => {
 	return (
 		<div className="w-100 inline-flex justify-between items-center">
 			<PhoneSideBar />
-			<p className="pt2">Welcome, {user.first_name}</p>
+			<p className="pt2">Welcome, {user?.first_name}</p>
 			<div style={profilePic} className="shadow-1 ba pa2 mr3"></div>
 		</div>
 	);

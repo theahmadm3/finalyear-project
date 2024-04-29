@@ -39,7 +39,7 @@ const Home: React.FC = () => {
 
 	useEffect(() => {
 		if (!isLoggedIn) {
-			navigate(pathname ===  "/login" ? "/login" : "/login");
+			navigate(pathname ==  "/login" ? "/login" : "/student-login");
 		}
 	}, [isLoggedIn, navigate, pathname]);
 

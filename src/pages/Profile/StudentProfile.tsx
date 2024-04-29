@@ -14,12 +14,12 @@ const StudentProfile: React.FC = () => {
 		}
 	}, [user]); // Update waiting state when user changes
 
-	if (!user) {
+	if (waiting) {
 		return <Loader />;
 	}
 
 	const profilePicture = `https://robohash.org/${
-		waiting ? "" : user.first_name
+		waiting ? "" : user?.first_name
 	}`;
 
 	const profilePic = {
@@ -40,14 +40,14 @@ const StudentProfile: React.FC = () => {
 				<br className="dn-ns"></br>
 				<div className="ml3-ns">
 					<p className="b ">
-						{user.first_name} {user.last_name}
+						{user?.first_name} {user?.last_name}
 					</p>
-					<p className="">Student | Year {user.level}</p> <br />
+					<p className="">Student | Year {user?.level}</p> <br />
 					<p className="w-100">
-						<span className="b">ID:</span> {user.student_id}{" "}
+						<span className="b">ID:</span> {user?.student_id}{" "}
 						<span className="dn-s">|</span> <br className="dn-ns"></br>
 						<br className="dn-ns"></br> <span className="b">Department:</span>{" "}
-						{user.department}
+						{user?.department}
 					</p>
 				</div>
 			</section>
@@ -60,15 +60,15 @@ const StudentProfile: React.FC = () => {
 				<div className="pa2 flex flex-row-ns justify-between-ns flex-column-s w-100">
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Country</p>
-						<p>{user.country}</p>
+						<p>{user?.country}</p>
 					</div>
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Phone</p>
-						<p>{user.phone_number}</p>
+						<p>{user?.phone_number}</p>
 					</div>
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Email</p>
-						<p>{user.email}</p>
+						<p>{user?.email}</p>
 					</div>
 				</div>
 			</section>
