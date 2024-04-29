@@ -16,9 +16,9 @@ import App from "./App.tsx";
 import InstructorLogin from "./pages/Login/InstructorLogin.tsx";
 import StudentLogin from "./pages/Login/StudentLogin.tsx";
 import Home from "./pages/HomePage/Home.tsx";
-import ErrorLoading from "./components/Loader/ErrorLoading.tsx";
 import Courses from "./pages/Courses/Courses.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
+import Error404 from "./pages/Error404/Error404.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "*",
-		element: <ErrorLoading />,
+		element: <Error404 />,
 	},
 ]);
 

@@ -64,10 +64,10 @@ const Home: React.FC = () => {
 					<SideBar />
 				</div>
 				<div className="w-75 flex flex-column overflow-auto">
-					<div className="sticky white top-0 left-0 w-100">
+					<div className="sticky white top-0 left-0 w-100 bg-dark-blue">
 						<Header />
 					</div>
-					<section className="w-100 overflow-auto pa2">
+					<section className="w-100 overflow-auto pa2 br3">
 						<Outlet />
 					</section>
 				</div>

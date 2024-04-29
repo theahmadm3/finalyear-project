@@ -6,6 +6,8 @@ interface Course {
 	title: string;
 	course_code: string;
 	email: string;
+	first_name: string;
+	last_name: string;
 }
 
 const StudentCourses: React.FC = () => {
@@ -51,13 +53,26 @@ const StudentCourses: React.FC = () => {
 			) : errorLoading ? (
 				<p>Refresh the page, if not sign out and sign in again</p>
 			) : (
-				<div className="flex flex-row flex-wrap justify-between w-100 pa4-l pa3">
+				<div className="flex flex-row-ns flex-column-s flex-wrap justify-start-l justify-between w-100 pa4-l pa3">
 					{courses.map((course, index) => {
 						return (
-							<div key={index} className="pa2 shadow-1 br4 w-45">
-								Name : {course.title} <br />
-								Code: {course.course_code} <br />
-								Lecturer Email: {course.email} <br />
+							<div
+								key={index}
+								className="ba b--moon-gray pa3 pb4 shadow-1 br4 w-48-m w-30-l w-100-s mb3 mr3-l bg-light-gray blue tc"
+							>
+								<div className="b-circle-s center mb2"></div>
+								<p>{course.title}</p>
+
+								<p>{course.course_code}</p>
+								<br />
+								{/* {course.first_name} <br />
+								{course.last_name} <br /> */}
+								<a
+									href={`mailto:${course.email}`}
+									className="inline-flex pa2 pl3 pr3 tc br3 link white bg-blue grow shadow-1"
+								>
+									Contact Email to lecturer
+								</a>
 							</div>
 						);
 					})}

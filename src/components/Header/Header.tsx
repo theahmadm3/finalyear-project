@@ -37,7 +37,7 @@ const Header: React.FC = () => {
 	};
 
 	return (
-		<div className="w-100 bg-dark-blue pa2 inline-flex justify-between items-center pt3 pl3 pr3">
+		<div className="w-100 pa2 inline-flex justify-between items-center pt3 pl3 pr3">
 			<p className="pt2">Welcome, {user?.first_name}</p>
 			<div
 				style={profilePic}

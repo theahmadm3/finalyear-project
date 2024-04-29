@@ -76,7 +76,7 @@ const SideBar: React.FC = () => {
 			<div className="w-100 pointer">
 				<div
 					onClick={logout}
-					className="w-100 pa2 inline-flex mb2 link white bg-blue bg-animate br3 items-center"
+					className="w-100 pa2 inline-flex mb2 link white bg-blue br3 items-center"
 				>
 					<i className="material-icons mr2">logout</i>
 					Logout
