@@ -19,6 +19,7 @@ import Home from "./pages/HomePage/Home.tsx";
 import Courses from "./pages/Courses/Courses.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import Error404 from "./pages/Error404/Error404.tsx";
+import Attendance from "./pages/Attendance/Attendance.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
 			{
 				path: "courses",
 				element: <Courses />,
+			},
+			{
+				path: "attendance",
+				element: <Attendance />,
 			},
 		],
 	},
