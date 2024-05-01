@@ -1,4 +1,5 @@
-const Attendance: React.FC = () => {
-	return <>Attendance</>;
-};
+function Attendance() {
+	return <div>Attendance</div>;
+}
+
 export default Attendance;

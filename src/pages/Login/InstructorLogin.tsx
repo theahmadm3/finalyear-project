@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FormEvent, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth/AuthContext";
@@ -23,7 +24,7 @@ const InstructorLogin: React.FC = () => {
 		setDisableButton(true);
 
 		try {
-			const data = await login(loginData);
+			const data: any = await login(loginData);
 			// Redirect or show success message
 			if (data.access) {
 				// Redirect or show success message

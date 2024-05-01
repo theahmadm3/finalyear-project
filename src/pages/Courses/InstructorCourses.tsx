@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import { AuthContext } from "../../contexts/auth/AuthContext";
+import { Link } from "react-router-dom";
 
 interface Course {
 	title: string;
+	course_code: string;
 }
 
 const InstructorCourses: React.FC = () => {
@@ -51,7 +53,28 @@ const InstructorCourses: React.FC = () => {
 			) : errorLoading ? (
 				<p>Refresh the page, if not sign out and sign in again</p>
 			) : (
-				<p>{JSON.stringify(courses)}</p>
+				<div className="flex flex-row-ns flex-column-s flex-wrap justify-start-l justify-between w-100 pa4-l pa3">
+					{courses.map((course, index) => {
+						return (
+							<div
+								key={index}
+								className="pa3 pb4 shadow-1 br4 w-48-m w-30-l w-100-s mb3 mr3-l bg-light-gray blue tc"
+							>
+								<div className="b-circle-s center mb2"></div>
+								<p>{course.title}</p>
+
+								<p>{course.course_code}</p>
+								<br />
+								<Link
+									to="/"
+									className="pa3 pl4 pr4 link white bg-blue br3 shadow-1 grow"
+								>
+									Take Attendance
+								</Link>
+							</div>
+						);
+					})}
+				</div>
 			)}
 		</>
 	);
