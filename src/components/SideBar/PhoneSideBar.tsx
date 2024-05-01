@@ -74,15 +74,6 @@ const PhoneSideBar: React.FC = () => {
 					</Link>
 					<Link
 						onClick={handleClose}
-						to="/portal/attendance"
-						className="inline-flex w-100 link white hover-bg-blue pa1"
-						style={{ outline: "none" }}
-					>
-						<i className="material-icons mr2">check_box</i>{" "}
-						<p className="ma0">Attendance</p>
-					</Link>
-					<Link
-						onClick={handleClose}
 						to="/portal/records"
 						className="inline-flex w-100 link white hover-bg-blue pa1"
 						style={{ outline: "none" }}
