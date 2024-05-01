@@ -43,8 +43,9 @@ const PhoneSideBar: React.FC = () => {
 				className=""
 				style={{ width: "70%" }}
 			>
-				<Offcanvas.Header className="bg-dark-blue white">
-					<i onClick={handleClose} className="material-icons w-100 tr">
+				<Offcanvas.Header className="bg-dark-blue white inline-flex justify-between items-center">
+					<h3 className='w-80'>MJ University</h3>
+					<i onClick={handleClose} className="material-icons w-10 tr">
 						close
 					</i>
 				</Offcanvas.Header>

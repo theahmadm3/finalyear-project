@@ -136,7 +136,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 						<p className="error-message">{formError}</p>
 						<hr className="mt4 mb2 w-100"></hr>
 						<div className="inline-flex justify-end w-100 pa2">
-							<Button variant="secondary" onClick={handleCloseQrCode}>
+							<Button variant="secondary" onClick={handleClose}>
 								Close
 							</Button>
 							<button
@@ -155,10 +155,10 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 				</Modal.Header>
 				<Modal.Body>
 					<div
-						className="flex flex-column justify-center items-center pa2"
+						className="w-100-s flex flex-column justify-center items-center pa2"
 						style={{ height: "70vh" }}
 					>
-						<QRCode size={400} value={formData} />
+						<QRCode size={350} value={formData} />
 					</div>
 				</Modal.Body>
 			</Modal>

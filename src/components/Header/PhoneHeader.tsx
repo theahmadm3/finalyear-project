@@ -39,6 +39,7 @@ const PhoneHeader: React.FC = () => {
 	return (
 		<div className="w-100 inline-flex justify-between items-center">
 			<PhoneSideBar />
+			<h3>MJU</h3>
 			<p className="pt2">Welcome, {user?.first_name}</p>
 			<div style={profilePic} className="shadow-1 ba pa2 mr3"></div>
 		</div>
