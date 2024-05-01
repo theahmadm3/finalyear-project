@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth/AuthContext";
 
@@ -7,7 +7,18 @@ const SideBar: React.FC = () => {
 		outline: "none",
 	};
 
-	const { logout } = useContext(AuthContext);
+	const { logout, user } = useContext(AuthContext);
+
+	const [waiting, setWaiting] = useState<boolean>(true);
+
+	useEffect(() => {
+		// When either user or instructor context value becomes available, update waiting state
+		if (user !== null || user !== undefined) {
+			setWaiting(false);
+		}
+	}, [user]);
+
+	const isStudent = waiting ? user?.is_student : user?.is_student;
 
 	return (
 		<div className="flex flex-column justify-between vh-90">
@@ -36,13 +47,18 @@ const SideBar: React.FC = () => {
 					<i className="material-icons mr2">school</i>
 					<p className="ma0">Courses</p>
 				</NavLink>
+
 				<NavLink
 					to="/portal/attendance"
 					style={linkStyles}
 					className={({ isActive }) =>
 						isActive
 							? "pa2 inline-flex mb2 link white bg-white bg-animate blue items-center br3"
-							: "pa2 inline-flex mb2 link white items-center"
+							: `${
+									isStudent
+										? "pa2 inline-flex mb2 link white items-center"
+										: "dn"
+							  }`
 					}
 				>
 					<i className="material-icons mr2">check_box</i>
