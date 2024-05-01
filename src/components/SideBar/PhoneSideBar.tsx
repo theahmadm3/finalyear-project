@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth/AuthContext";
 
 const PhoneSideBar: React.FC = () => {
@@ -10,7 +10,26 @@ const PhoneSideBar: React.FC = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const { logout } = useContext(AuthContext);
+	const { logout, user } = useContext(AuthContext);
+
+	const navigate = useNavigate();
+
+	const [waiting, setWaiting] = useState<boolean>(true);
+
+	useEffect(() => {
+		// When either user or instructor context value becomes available, update waiting state
+		if (user !== null || user !== undefined) {
+			setWaiting(false);
+		}
+	}, [user]);
+
+	const isStudent = waiting ? user?.is_student : user?.is_student;
+
+	const handleLogout = () => {
+		isStudent ? navigate("/student-login") : navigate("/login");
+		logout();
+		window.location.reload();
+	};
 
 	return (
 		<>
@@ -41,9 +60,13 @@ const PhoneSideBar: React.FC = () => {
 					</Link>
 					<Link
 						onClick={handleClose}
-						to="/portal/courses"
-						className="inline-flex w-100 link white hover-bg-blue pa1"
+						to="/portal/attendance"
 						style={{ outline: "none" }}
+						className={`${
+							isStudent
+								? "inline-flex w-100 link white hover-bg-blue pa1"
+								: "dn"
+						}`}
 					>
 						<i className="material-icons mr2">school</i>{" "}
 						<p className="ma0">Courses</p>
@@ -76,7 +99,7 @@ const PhoneSideBar: React.FC = () => {
 						<p className="ma0">Settings</p>
 					</Link>
 					<div
-						onClick={logout}
+						onClick={handleLogout}
 						className="inline-flex w-100 link white hover-bg-blue pa1 pointer"
 						style={{ outline: "none" }}
 					>
