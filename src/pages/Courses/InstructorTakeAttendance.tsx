@@ -1,3 +1,4 @@
+import QRCode from "qrcode.react";
 import React, { FormEvent, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
@@ -11,12 +12,16 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 	name,
 }) => {
 	const [show, setShow] = useState<boolean>(false);
+	const [showQrCode, setShowQrCode] = useState<boolean>(false);
 	const [location, setLocation] = useState<string>("");
 	const [locationError, setLocationError] = useState<string>("");
 	const [formError, setFormError] = useState<string>("");
+	const [formData, setFormData] = useState<string>("");
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+	const HandleShowQrCode = () => setShowQrCode(true);
+	const handleCloseQrCode = () => setShowQrCode(false);
 
 	const getLocation = () => {
 		if (navigator.geolocation) {
@@ -64,8 +69,10 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 		};
 
 		console.log(lectureAttendanceData);
+		setFormData(JSON.stringify(lectureAttendanceData));
+		HandleShowQrCode();
 
-		handleClose(); // Close the modal after successful submission
+		handleClose();
 	};
 
 	return (
@@ -73,6 +80,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 			<Button variant="primary" onClick={getLocation}>
 				Take Attendance
 			</Button>
+
 			<Modal show={show} onHide={handleClose} centered>
 				<Modal.Header closeButton>
 					<span className="b"></span>Take Attendance
@@ -87,7 +95,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 								<input
 									className="pa2 br3 bn shadow-2"
 									id="course"
-									value={`${courseId} ${name}`}
+									value={`${name}`}
 									readOnly
 									disabled
 								/>
@@ -128,7 +136,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 						<p className="error-message">{formError}</p>
 						<hr className="mt4 mb2 w-100"></hr>
 						<div className="inline-flex justify-end w-100 pa2">
-							<Button variant="secondary" onClick={handleClose}>
+							<Button variant="secondary" onClick={handleCloseQrCode}>
 								Close
 							</Button>
 							<button
@@ -139,6 +147,19 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 							</button>
 						</div>
 					</form>
+				</Modal.Body>
+			</Modal>
+			<Modal show={showQrCode} onHide={handleCloseQrCode} centered>
+				<Modal.Header closeButton>
+					<span className="b"></span>QR Code
+				</Modal.Header>
+				<Modal.Body>
+					<div
+						className="flex flex-column justify-center items-center pa2"
+						style={{ height: "70vh" }}
+					>
+						<QRCode size={400} value={formData} />
+					</div>
 				</Modal.Body>
 			</Modal>
 		</>
