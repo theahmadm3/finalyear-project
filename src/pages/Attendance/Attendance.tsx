@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/auth/AuthContext";
-import StudentAttendance from "./StudentAttendance";
-import InstructorAttendance from "./LecturerAttendance";
 import Loader from "../../components/Loader/Loader";
 
 const Attendance: React.FC = () => {
@@ -19,7 +17,7 @@ const Attendance: React.FC = () => {
 		return <Loader />;
 	}
 
-	return user?.is_student ? <StudentAttendance /> : <InstructorAttendance />;
+	return <>Attendance</>;
 };
 
 export default Attendance;
