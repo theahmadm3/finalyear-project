@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap");
-body, #root {
-  font-family: "Quicksand", sans-serif !important;
+body,
+#root {
+	font-family: "Quicksand", sans-serif !important;
 }
 .fluent-input {
 	font-size: 1rem;
@@ -18,23 +19,26 @@ body, #root {
 .w-fc {
 	width: fit-content;
 }
-.w-15{
-	width:15%;
+.w-15 {
+	width: 15%;
 }
-.w-45{
-	width:45%;
+.w-45 {
+	width: 45%;
 }
-.w-85{
-	width:85%;
+.w-85 {
+	width: 85%;
 }
-.vh-90{
-	height:80vh;
+.vh-90 {
+	height: 80vh;
 }
 .sticky {
 	position: sticky;
 }
 
 @media (min-width: 767px) {
+	.w-45-ns {
+		width: 48%;
+	}
 	.b-circle {
 		width: 250px;
 		height: 250px;
@@ -42,9 +46,9 @@ body, #root {
 		border-radius: 50%;
 	}
 }
-@media screen and (min-width: 30em) and (max-width: 60em){
-	.w-48-m{
-		width:48%;
+@media screen and (min-width: 30em) and (max-width: 60em) {
+	.w-48-m {
+		width: 48%;
 	}
 }
 @media (max-width: 767px) {

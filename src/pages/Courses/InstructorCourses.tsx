@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import Loader from "../../components/Loader/Loader";
+import InstructorTakeAttendance from "./InstructorTakeAttendance";
+
 import { AuthContext } from "../../contexts/auth/AuthContext";
-import { Link } from "react-router-dom";
 
 interface Course {
+	id: number;
 	title: string;
 	course_code: string;
 }
@@ -64,13 +67,12 @@ const InstructorCourses: React.FC = () => {
 								<p>{course.title}</p>
 
 								<p>{course.course_code}</p>
+								<p></p>
 								<br />
-								<Link
-									to="/"
-									className="pa3 pl4 pr4 link white bg-blue br3 shadow-1 grow"
-								>
-									Take Attendance
-								</Link>
+								<InstructorTakeAttendance
+									courseId={course.id}
+									name={course.course_code}
+								/>
 							</div>
 						);
 					})}
