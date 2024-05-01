@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth/AuthContext";
 
 const SideBar: React.FC = () => {
@@ -8,6 +8,8 @@ const SideBar: React.FC = () => {
 	};
 
 	const { logout, user } = useContext(AuthContext);
+
+	const navigate = useNavigate();
 
 	const [waiting, setWaiting] = useState<boolean>(true);
 
@@ -19,6 +21,12 @@ const SideBar: React.FC = () => {
 	}, [user]);
 
 	const isStudent = waiting ? user?.is_student : user?.is_student;
+
+	const handleLogout = () => {
+		isStudent ? navigate("/student-login") : navigate("/login");
+		logout();
+		window.location.reload();
+	};
 
 	return (
 		<div className="flex flex-column justify-between vh-90">
@@ -91,7 +99,7 @@ const SideBar: React.FC = () => {
 			</div>
 			<div className="w-100 pointer">
 				<div
-					onClick={logout}
+					onClick={handleLogout}
 					className="w-100 pa2 inline-flex mb2 link white bg-blue br3 items-center"
 				>
 					<i className="material-icons mr2">logout</i>

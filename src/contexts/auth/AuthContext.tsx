@@ -158,7 +158,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	const logout = () => {
 		localStorage.removeItem("token");
 		setIsLoggedIn(false);
-		window.location.reload();
 	};
 
 	return (
