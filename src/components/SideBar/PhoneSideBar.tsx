@@ -44,7 +44,7 @@ const PhoneSideBar: React.FC = () => {
 				style={{ width: "70%" }}
 			>
 				<Offcanvas.Header className="bg-dark-blue white inline-flex justify-between items-center">
-					<h3 className='w-80'>MJ University</h3>
+					<h3 className="w-80">MJ University</h3>
 					<i onClick={handleClose} className="material-icons w-10 tr">
 						close
 					</i>
@@ -61,6 +61,15 @@ const PhoneSideBar: React.FC = () => {
 					</Link>
 					<Link
 						onClick={handleClose}
+						to="/portal/courses"
+						style={{ outline: "none" }}
+						className="inline-flex w-100 link white hover-bg-blue pa1"
+					>
+						<i className="material-icons mr2">school</i>{" "}
+						<p className="ma0">Courses</p>
+					</Link>
+					<Link
+						onClick={handleClose}
 						to="/portal/attendance"
 						style={{ outline: "none" }}
 						className={`${
@@ -69,8 +78,8 @@ const PhoneSideBar: React.FC = () => {
 								: "dn"
 						}`}
 					>
-						<i className="material-icons mr2">school</i>{" "}
-						<p className="ma0">Courses</p>
+						<i className="material-icons mr2">check_box</i>
+						<p className="ma0">Attendance</p>
 					</Link>
 					<Link
 						onClick={handleClose}
