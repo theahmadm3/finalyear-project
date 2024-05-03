@@ -3,14 +3,14 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import { AuthContext } from "../../contexts/auth/AuthContext";
-import { QrReader } from "@chaiwei/react-qr-reader";
 
 import Loader from "../../components/Loader/Loader";
+import { QrReader, OnResultFunction } from "react-qr-reader";
 
 const Attendance: React.FC = () => {
 	const { user } = useContext(AuthContext);
 	const [waiting, setWaiting] = useState<boolean>(true);
-	const [data, setData] = useState<string>("No result");
+	// const [qrCodeData, setQrCodeData] = useState<string | null>(null);
 
 	useEffect(() => {
 		// When isStudent context value becomes available, update waiting state
@@ -19,6 +19,18 @@ const Attendance: React.FC = () => {
 		}
 	}, [user]); // Update waiting state when isStudent changes
 
+	const handleScan: OnResultFunction = (qrResult: any, error: any) => {
+		if (qrResult) {
+			alert(qrResult.getText());
+		} else {
+			console.error(error);
+		}
+	};
+
+	// const handleError = (error: any) => {
+	// 	console.error(error);
+	// };
+
 	if (waiting) {
 		return <Loader />;
 	}
@@ -26,18 +38,12 @@ const Attendance: React.FC = () => {
 	return (
 		<>
 			<QrReader
-				onResult={(result: { text: string }, error: any) => {
-					if (!!result) {
-						setData(result?.text);
-					}
-
-					if (!!error) {
-						console.info(error);
-					}
-				}}
-				style={{ width: "100%" }}
+				className="w-50"
+				onResult={handleScan}
+				constraints={{ facingMode: "environment" }}
+				scanDelay={300}
 			/>
-			<p>{data}</p>
+			{/* <p>{qrCodeData}</p> */}
 		</>
 	);
 };
