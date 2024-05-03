@@ -1,7 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-
-// using cdn and link tag in the html file for styles
+import ReactDOM from "react-dom";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -58,10 +56,11 @@ const router = createBrowserRouter([
 	},
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.render(
 	<React.StrictMode>
 		<AuthProvider>
 			<RouterProvider router={router} />
 		</AuthProvider>
 	</React.StrictMode>,
+	document.getElementById("root"),
 );
