@@ -68,9 +68,9 @@ function Attendance() {
 					</button>
 				</div>
 			) : (
-				<>
+				<div className="w-100 vh-75 flex flex-column justify-center items-center">
 					<QrReader
-						className="w-50"
+						className="w-70"
 						scanDelay={500}
 						constraints={{ facingMode: "environment" }}
 						onResult={(result, error) => {
@@ -85,7 +85,7 @@ function Attendance() {
 						}}
 					/>
 					{/* {data} */}
-				</>
+				</div>
 			)}
 		</>
 	);
