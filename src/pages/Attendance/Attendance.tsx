@@ -51,7 +51,7 @@ import { QrReader } from "react-qr-reader";
 
 function Attendance() {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	// const [data, setData] = useState<any>(null);
+	const [data, setData] = useState<any>(null);
 	const [scanQR, setScanQR] = useState<boolean>(false);
 
 	return (
@@ -76,7 +76,7 @@ function Attendance() {
 						onResult={(result, error) => {
 							if (!!result) {
 								setScanQR(false);
-								alert(result);
+								setData(result);
 							}
 
 							if (!!error) {
@@ -84,7 +84,7 @@ function Attendance() {
 							}
 						}}
 					/>
-					{/* {data} */}
+					{data === null ? "no data yet" : data}
 				</div>
 			)}
 		</>
