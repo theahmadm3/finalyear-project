@@ -80,7 +80,7 @@ function Attendance() {
 							}
 
 							if (!!error) {
-								alert(JSON.stringify(error));
+								// alert(JSON.stringify(error));
 							}
 						}}
 					/>
