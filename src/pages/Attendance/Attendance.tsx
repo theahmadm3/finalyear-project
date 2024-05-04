@@ -84,9 +84,9 @@ function Attendance() {
 							}
 						}}
 					/>
-					{/* {data === null ? "no data yet" : JSON.stringify(data)} */}
 				</div>
 			)}
+			{/* {data === null ? "no data yet" : JSON.stringify(data)} */}
 		</>
 	);
 }
