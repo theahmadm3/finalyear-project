@@ -76,15 +76,15 @@ function Attendance() {
 						onResult={(result, error) => {
 							if (!!result) {
 								setScanQR(false);
-								setData(result);
+								alert(result);
 							}
 
 							if (!!error) {
-								alert(JSON.stringify(error));
+								// alert(JSON.stringify(error));
 							}
 						}}
 					/>
-					{data}
+					{/* {data} */}
 				</>
 			)}
 		</>
