@@ -84,7 +84,7 @@ function Attendance() {
 							}
 						}}
 					/>
-					{data === null ? "no data yet" : data}
+					{data === null ? "no data yet" : JSON.stringify(data)}
 				</div>
 			)}
 		</>
