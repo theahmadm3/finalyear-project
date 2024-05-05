@@ -41,7 +41,6 @@ const Attendance: React.FC = () => {
 			});
 	}, [token]);
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const takeAttendance = () => {
 		const email = user?.email;
 		const lecture_id = 1;
@@ -54,9 +53,12 @@ const Attendance: React.FC = () => {
 			email: email,
 			lecture_id: lecture_id,
 		};
-		console.log(attendanceData);
+		alert(attendanceData);
 	};
 
+	if (user?.first_name === "haha") {
+		takeAttendance();
+	}
 	return (
 		<>
 			<h1>{user?.first_name}</h1>

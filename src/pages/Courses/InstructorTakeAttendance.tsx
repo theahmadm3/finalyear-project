@@ -90,9 +90,10 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 		// console.log(lectureAttendanceData);
 		if (data.success) {
 			const qrString = JSON.stringify(data.data);
-			setFormData(qrString);
-			HandleShowQrCode();
+			console.log(qrString);
 		}
+		setFormData(JSON.stringify(lectureAttendanceData));
+		HandleShowQrCode();
 
 		handleClose();
 	};
