@@ -1,6 +1,7 @@
 import QRCode from "qrcode.react";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useContext, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 
 export interface InstructorTakeAttendanceProps {
 	courseId: number;
@@ -11,6 +12,8 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 	courseId,
 	name,
 }) => {
+	const { token } = useContext(AuthContext);
+
 	const [show, setShow] = useState<boolean>(false);
 	const [showQrCode, setShowQrCode] = useState<boolean>(false);
 	const [location, setLocation] = useState<string>("");
@@ -51,7 +54,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 		setSelectedTime(event.target.value);
 	};
 
-	const handleSubmit = (e: FormEvent) => {
+	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 
 		if (location.trim() === "" || selectedTime.trim() === "") {
@@ -63,14 +66,33 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 		setFormError("");
 
 		const lectureAttendanceData = {
-			course_id: courseId,
+			course: Number(courseId),
 			location: location,
-			time: selectedTime,
+			time_frame: selectedTime,
+			lecturer: 1,
 		};
 
-		console.log(lectureAttendanceData);
-		setFormData(JSON.stringify(lectureAttendanceData));
-		HandleShowQrCode();
+		const response = await fetch(
+			"https://finalyear-project-backend.onrender.com/api/create/lecturer/attendance",
+			{
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(lectureAttendanceData),
+			},
+		);
+
+		const data = await response.json();
+		// console.log(data.data);
+
+		// console.log(lectureAttendanceData);
+		if (data.success) {
+			const qrString = JSON.stringify(data.data);
+			setFormData(qrString);
+			HandleShowQrCode();
+		}
 
 		handleClose();
 	};
@@ -128,8 +150,9 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 									required
 								>
 									<option value="">Select Time frame</option>
-									<option value={"9-12"}>Morning (9am - 12pm)</option>
-									<option value={"2-5"}>Afternoon (2pm - 5pm)</option>
+									<option value={"9-12"}>Morning (9am - 12 noon)</option>
+									<option value={"12-14"}>Evening (12 noon - 2pm)</option>
+									<option value={"14-17"}>Afternoon (2pm - 5pm)</option>
 								</select>
 							</div>
 						</div>
