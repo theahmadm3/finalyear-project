@@ -153,6 +153,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 									<option value={"9-12"}>Morning (9am - 12 noon)</option>
 									<option value={"12-14"}>Evening (12 noon - 2pm)</option>
 									<option value={"14-17"}>Afternoon (2pm - 5pm)</option>
+									<option value={"18-23"}>Night (Night)</option>
 								</select>
 							</div>
 						</div>

@@ -1,5 +1,5 @@
 /* eslint-disable no-extra-boolean-cast */
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { QrReader } from "react-qr-reader";
 import { AuthContext } from "../../contexts/auth/AuthContext";
@@ -8,8 +8,54 @@ const Attendance: React.FC = () => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const [data, setData] = useState<any>(null);
 	const [scanQR, setScanQR] = useState<boolean>(false);
+	const [courses, setCourses] = useState<number[]>([]);
+	const courseId = 1;
 
-	const { user } = useContext(AuthContext);
+	const { user, token } = useContext(AuthContext);
+
+	useEffect(() => {
+		fetch(
+			"https://finalyear-project-backend.onrender.com/api/get/student_courses",
+			{
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+			},
+		)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Failed to fetch courses");
+				}
+				return response.json();
+			})
+			.then((apiData) => {
+				const courses = apiData.enrolled;
+				const coursesArray: number[] = [];
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				courses.map((course: any) => {
+					coursesArray.push(course.id);
+				});
+				setCourses(coursesArray);
+			});
+	}, [token]);
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const takeAttendance = () => {
+		const email = user?.email;
+		const lecture_id = 1;
+		if (!courses.includes(courseId)) {
+			alert("You are not enrolled in this course");
+			return;
+		}
+
+		const attendanceData = {
+			email: email,
+			lecture_id: lecture_id,
+		};
+		console.log(attendanceData);
+	};
 
 	return (
 		<>
@@ -45,7 +91,7 @@ const Attendance: React.FC = () => {
 					/>
 				</div>
 			)}
-			{data === null ? "no data yet" : JSON.stringify(data)}
+			{data === null ? "no data yet" : data}
 		</>
 	);
 };
