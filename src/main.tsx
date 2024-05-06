@@ -18,6 +18,9 @@ import Courses from "./pages/Courses/Courses.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import Error404 from "./pages/Error404/Error404.tsx";
 import Attendance from "./pages/Attendance/Attendance.tsx";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const router = createBrowserRouter([
 	{
@@ -61,6 +64,7 @@ ReactDOM.render(
 		<AuthProvider>
 			<RouterProvider router={router} />
 		</AuthProvider>
+		<ToastContainer />
 	</React.StrictMode>,
 	document.getElementById("root"),
 );

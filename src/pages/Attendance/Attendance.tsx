@@ -4,6 +4,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { QrReader } from "react-qr-reader";
 import { AuthContext } from "../../contexts/auth/AuthContext";
 
+import { toast } from "react-toastify";
+
 const Attendance: React.FC = () => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const [data, setData] = useState<any>(null);
@@ -50,12 +52,12 @@ const Attendance: React.FC = () => {
 		const courseId = qrData.course_id;
 
 		if (!courses.includes(courseId)) {
-			alert("You are not enrolled in this course");
+			toast.error("You are not enrolled in this course");
 			alert(courseId);
 			return;
 		}
 
-		alert(
+		toast.success(
 			`"Successful Attendance" Course ID: ${courseId}, email: ${email}, lecture ID: ${lecture_id}`,
 		);
 
