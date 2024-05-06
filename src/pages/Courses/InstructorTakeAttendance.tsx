@@ -38,8 +38,8 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 					console.log("Location", location);
 				},
 				(error) => {
-					setLocationError(error.message); // Update location error message
-					alert(error.message); // Alert the error message directly
+					setLocationError(error.message);
+					alert(error.message);
 				},
 			);
 		} else {
@@ -62,7 +62,6 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 			return;
 		}
 
-		// Reset form error message
 		setFormError("");
 
 		const lectureAttendanceData = {
@@ -85,15 +84,16 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 		);
 
 		const data = await response.json();
-		// console.log(data.data);
 
-		// console.log(lectureAttendanceData);
 		if (data.success) {
 			const qrString = JSON.stringify(data.data);
 			console.log(qrString);
+			setFormData(qrString);
+			HandleShowQrCode();
+		} else {
+			setFormError(data.message);
+			alert(data.message);
 		}
-		setFormData(JSON.stringify(lectureAttendanceData));
-		HandleShowQrCode();
 
 		handleClose();
 	};
@@ -103,7 +103,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 			<Button variant="primary" onClick={getLocation}>
 				Take Attendance
 			</Button>
-
+			<p className="red">{formError}</p>
 			<Modal show={show} onHide={handleClose} centered>
 				<Modal.Header closeButton>
 					<span className="b"></span>Take Attendance
@@ -152,9 +152,9 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 								>
 									<option value="">Select Time frame</option>
 									<option value={"9-12"}>Morning (9am - 12 noon)</option>
-									<option value={"12-14"}>Evening (12 noon - 2pm)</option>
-									<option value={"14-17"}>Afternoon (2pm - 5pm)</option>
-									<option value={"18-23"}>Night (Night)</option>
+									<option value={"12-14"}>Afternoon (12 noon - 2pm)</option>
+									<option value={"14-17"}>Evening (2pm - 5pm)</option>
+									<option value={"1-23"}>Night (Night)</option>
 								</select>
 							</div>
 						</div>
