@@ -59,7 +59,7 @@ const Attendance: React.FC = () => {
 			lecture_id: lecture_id,
 		};
 
-		alert(attendanceData);
+		console.log(attendanceData); 
 	};
 
 	return (
