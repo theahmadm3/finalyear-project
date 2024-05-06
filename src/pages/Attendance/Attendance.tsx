@@ -52,7 +52,7 @@ const Attendance: React.FC = () => {
 			return;
 		}
 
-		alert(JSON.stringify(scanData));
+		alert(scanData);
 
 		const attendanceData = {
 			email: email,
