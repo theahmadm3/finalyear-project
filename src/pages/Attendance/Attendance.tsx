@@ -52,14 +52,14 @@ const Attendance: React.FC = () => {
 			return;
 		}
 
-		alert(scanData);
+		alert(typeof scanData);
 
 		const attendanceData = {
 			email: email,
 			lecture_id: lecture_id,
 		};
 
-		console.log(attendanceData); 
+		console.log(attendanceData);
 	};
 
 	return (
