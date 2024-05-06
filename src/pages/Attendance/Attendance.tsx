@@ -55,7 +55,9 @@ const Attendance: React.FC = () => {
 			return;
 		}
 
-		alert("Successful Attendance");
+		alert(
+			`"Successful Attendance" Course ID: ${courseId}, email: ${email}, lecture ID: ${lecture_id}`,
+		);
 
 		const attendanceData = {
 			email: email,
