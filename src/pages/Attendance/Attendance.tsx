@@ -50,6 +50,7 @@ const Attendance: React.FC = () => {
 
 		if (!courses.includes(courseId)) {
 			alert("You are not enrolled in this course");
+			alert(courseId);
 			return;
 		}
 
