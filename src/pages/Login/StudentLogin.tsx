@@ -82,8 +82,8 @@ const StudentLogin: React.FC = () => {
 							disabled={disableButton}
 							className={
 								disableButton
-									? "w-100 pa3 pointer grow bn bg-light-blue white br2"
-									: "w-100 pa3 pointer grow bn bg-blue white br2"
+									? "w-100 pa3 pointer bn bg-light-blue white br2"
+									: "w-100 pa3 pointer bn bg-blue white br2"
 							}
 						>
 							{!disableButton ? "Login" : "Logging in..."}
