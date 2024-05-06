@@ -43,10 +43,10 @@ const Attendance: React.FC = () => {
 	console.log(data);
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const takeAttendance = (scanData: any) => {
+	const takeAttendance = async (scanData: any) => {
 		const email = user?.email;
 		const lecture_id = 1;
-		const courseId = scanData.course_id;
+		const courseId = await scanData.course_id;
 
 		if (!courses.includes(courseId)) {
 			alert("You are not enrolled in this course");
