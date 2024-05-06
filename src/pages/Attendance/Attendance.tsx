@@ -41,6 +41,8 @@ const Attendance: React.FC = () => {
 			});
 	}, [token]);
 
+	console.log(data);
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const takeAttendance = (scanData: any) => {
 		const email = user?.email;
@@ -94,7 +96,7 @@ const Attendance: React.FC = () => {
 					/>
 				</div>
 			)}
-			{data === null ? "no data yet" : data}
+			{/* {data === null ? "no data yet" : data} */}
 		</>
 	);
 };
