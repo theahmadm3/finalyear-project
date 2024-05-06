@@ -41,7 +41,7 @@ const Attendance: React.FC = () => {
 			});
 	}, [token]);
 
-	const takeAttendance = () => {
+	const takeAttendance = (scanData) => {
 		const email = user?.email;
 		const lecture_id = 1;
 		if (!courses.includes(courseId)) {
@@ -49,16 +49,16 @@ const Attendance: React.FC = () => {
 			return;
 		}
 
+		alert(scanData);
+
 		const attendanceData = {
 			email: email,
 			lecture_id: lecture_id,
 		};
+
 		alert(attendanceData);
 	};
 
-	if (user?.first_name === "haha") {
-		takeAttendance();
-	}
 	return (
 		<>
 			<h1>{user?.first_name}</h1>
@@ -82,7 +82,7 @@ const Attendance: React.FC = () => {
 						onResult={(result, error) => {
 							if (!!result) {
 								setScanQR(false);
-								alert(result);
+								takeAttendance(result);
 								setData(result);
 							}
 
