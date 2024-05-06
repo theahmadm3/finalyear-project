@@ -41,7 +41,8 @@ const Attendance: React.FC = () => {
 			});
 	}, [token]);
 
-	const takeAttendance = (scanData) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const takeAttendance = (scanData: any) => {
 		const email = user?.email;
 		const lecture_id = 1;
 		if (!courses.includes(courseId)) {
