@@ -9,7 +9,6 @@ const Attendance: React.FC = () => {
 	const [data, setData] = useState<any>(null);
 	const [scanQR, setScanQR] = useState<boolean>(false);
 	const [courses, setCourses] = useState<number[]>([]);
-	const courseId = 1;
 
 	const { user, token } = useContext(AuthContext);
 
@@ -47,12 +46,14 @@ const Attendance: React.FC = () => {
 	const takeAttendance = (scanData: any) => {
 		const email = user?.email;
 		const lecture_id = 1;
+		const courseId = scanData.course_id;
+
 		if (!courses.includes(courseId)) {
 			alert("You are not enrolled in this course");
 			return;
 		}
 
-		alert(typeof scanData);
+		alert("Successful Attendance");
 
 		const attendanceData = {
 			email: email,
