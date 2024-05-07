@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import { AuthContext } from "../../contexts/auth/AuthContext";
+import { toast } from "react-toastify";
 
 interface Course {
 	title: string;
@@ -42,6 +43,7 @@ const StudentCourses: React.FC = () => {
 			.catch((err) => {
 				console.error("Error fetching courses: ", err);
 				setErrorLoading(true);
+				toast.error("Network Error");
 			})
 			.finally(() => setIsLoading(false)); // Move setIsLoading(false) here to stop loading after fetch
 	}, [token]);

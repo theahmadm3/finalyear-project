@@ -2,6 +2,7 @@ import QRCode from "qrcode.react";
 import React, { FormEvent, useContext, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { AuthContext } from "../../contexts/auth/AuthContext";
+import { toast } from "react-toastify";
 
 export interface InstructorTakeAttendanceProps {
 	courseId: number;
@@ -34,17 +35,17 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 						`${position.coords.latitude} ${position.coords.longitude}`,
 					);
 					handleShow();
-					console.log(position);
-					console.log("Location", location);
 				},
 				(error) => {
 					setLocationError(error.message);
 					alert(error.message);
+					toast.error(error.message);
 				},
 			);
 		} else {
 			setLocationError("Geolocation is not supported by your browser.");
 			alert("Geolocation is not supported by your browser.");
+			toast.error("Geolocation is not supported by your browser.");
 		}
 	};
 
@@ -63,6 +64,8 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 		}
 
 		setFormError("");
+		// Start loading indicator
+		const loadingToast = toast.loading("Generating QR code");
 
 		const lectureAttendanceData = {
 			course: Number(courseId),
@@ -71,28 +74,36 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 			lecturer: 1,
 		};
 
-		const response = await fetch(
-			"https://finalyear-project-backend.onrender.com/api/create/lecturer/attendance",
-			{
-				method: "POST",
-				headers: {
-					Authorization: `Bearer ${token}`,
-					"Content-Type": "application/json",
+		try {
+			const response = await fetch(
+				"https://finalyear-project-backend.onrender.com/api/create/lecturer/attendance",
+				{
+					method: "POST",
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(lectureAttendanceData),
 				},
-				body: JSON.stringify(lectureAttendanceData),
-			},
-		);
+			);
+			const data = await response.json();
 
-		const data = await response.json();
-
-		if (data.success) {
-			const qrString = JSON.stringify(data.data);
-			console.log(qrString);
-			setFormData(qrString);
-			HandleShowQrCode();
-		} else {
-			setFormError(data.message);
-			alert(data.message);
+			if (data.success) {
+				const qrString = JSON.stringify(data.data);
+				setFormData(qrString);
+				HandleShowQrCode();
+			} else {
+				setFormError(data.message);
+				// Display error message
+				toast.error(data.message);
+			}
+		} catch (error) {
+			console.error("Error fetching QR string:", error);
+			// Display error message
+			toast.error("Error generating qr code");
+		} finally {
+			// Hide loading indicator
+			toast.dismiss(loadingToast);
 		}
 
 		handleClose();

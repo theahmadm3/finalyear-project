@@ -7,8 +7,6 @@ import { AuthContext } from "../../contexts/auth/AuthContext";
 import { toast } from "react-toastify";
 
 const Attendance: React.FC = () => {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const [data, setData] = useState<any>(null);
 	const [scanQR, setScanQR] = useState<boolean>(false);
 	const [courses, setCourses] = useState<number[]>([]);
 
@@ -42,8 +40,6 @@ const Attendance: React.FC = () => {
 			});
 	}, [token]);
 
-	console.log(data);
-
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const takeAttendance = async (scanData: any) => {
 		const email = user?.email;
@@ -53,7 +49,6 @@ const Attendance: React.FC = () => {
 
 		if (!courses.includes(courseId)) {
 			toast.error("You are not enrolled in this course");
-			alert(courseId);
 			return;
 		}
 
@@ -93,7 +88,6 @@ const Attendance: React.FC = () => {
 							if (!!result) {
 								setScanQR(false);
 								takeAttendance(result);
-								setData(result);
 							}
 
 							if (!!error) {
@@ -103,7 +97,6 @@ const Attendance: React.FC = () => {
 					/>
 				</div>
 			)}
-			{/* {data === null ? "no data yet" : data} */}
 		</>
 	);
 };
