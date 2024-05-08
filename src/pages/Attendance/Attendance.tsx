@@ -44,7 +44,7 @@ const Attendance: React.FC = () => {
 	const takeAttendance = async (scanData: any) => {
 		const email = user?.email;
 		const lecture_id = 1;
-		const qrData = JSON.parse(scanData);
+		const qrData = await JSON.parse(scanData);
 		const courseId = qrData.course_id;
 
 		if (!courses.includes(courseId)) {
