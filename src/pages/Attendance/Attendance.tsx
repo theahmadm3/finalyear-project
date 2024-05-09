@@ -62,6 +62,30 @@ const Attendance: React.FC = () => {
 		getLocation();
 	}, [getLocation]);
 
+	const calculateDistance = (
+		lat1: number,
+		lon1: number,
+		lat2: number,
+		lon2: number,
+	): number => {
+		const earthRadius = 6371000; // Earth's radius in meters
+		const dLat = toRadians(lat2 - lat1);
+		const dLon = toRadians(lon2 - lon1);
+		const a =
+			Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+			Math.cos(toRadians(lat1)) *
+				Math.cos(toRadians(lat2)) *
+				Math.sin(dLon / 2) *
+				Math.sin(dLon / 2);
+		const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		const distance = earthRadius * c; // Distance in meters
+		return distance;
+	};
+
+	const toRadians = (degrees: number): number => {
+		return degrees * (Math.PI / 180);
+	};
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const takeAttendance = async (scanData: any) => {
 		const email = user?.email;
@@ -71,10 +95,14 @@ const Attendance: React.FC = () => {
 		const lecturer_long = Number(qrData.long);
 		const courseId = qrData.course_id;
 
-		if (lat !== lecturer_lat || long !== lecturer_long) {
+		const distance = calculateDistance(lat, long, lecturer_lat, lecturer_long);
+		const maxDistance = 25; // Set maximum distance threshold to 25 meters
+
+		if (distance > maxDistance) {
 			toast.error("You are not in class");
 			return;
 		}
+
 		if (!courses.includes(courseId)) {
 			toast.error("You are not enrolled in this course");
 			return;
