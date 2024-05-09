@@ -49,12 +49,14 @@ const Attendance: React.FC = () => {
 
 		if (!courses.includes(courseId)) {
 			toast.error("You are not enrolled in this course");
+			alert(scanData);
 			return;
 		}
 
 		toast.success(
 			`"Successful Attendance" Course ID: ${courseId}, email: ${email}, lecture ID: ${lecture_id}`,
 		);
+		alert(scanData);
 
 		const attendanceData = {
 			email: email,
