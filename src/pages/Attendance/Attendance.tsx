@@ -99,6 +99,7 @@ const Attendance: React.FC = () => {
 		const maxDistance = 25; // Set maximum distance threshold to 25 meters
 
 		if (distance > maxDistance) {
+			alert(`${lat} ${long}`)
 			toast.error("You are not in class");
 			return;
 		}
