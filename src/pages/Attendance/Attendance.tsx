@@ -117,7 +117,7 @@ const Attendance: React.FC = () => {
 
 		try {
 			const response = await fetch(
-				"https://finalyear-project-backend.onrender.com/api/create/lecturer/attendance",
+				"https://finalyear-project-backend.onrender.com/api/create/student/attendance",
 				{
 					method: "POST",
 					headers: {
@@ -130,15 +130,13 @@ const Attendance: React.FC = () => {
 			const data = await response.json();
 
 			if (data.success) {
-				toast.success(
-					`"Successful Attendance" Course ID: ${courseId}, email: ${email}, lecture ID: ${lecture_id}`,
-				);
+				toast.success("Successful Attendance");
 			} else {
 				toast.error(data.message);
 			}
-		} catch (error) {
-			console.error("Error fetching QR string:", error);
-			toast.error("Error generating qr code");
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (error: any) {
+			toast.error(error.message);
 		} finally {
 			toast.dismiss(loadingToast);
 		}
