@@ -20,6 +20,7 @@ import Error404 from "./pages/Error404/Error404.tsx";
 import Attendance from "./pages/Attendance/Attendance.tsx";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Records from "./pages/Records/Records.tsx";
 
 
 const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
 			{
 				path: "attendance",
 				element: <Attendance />,
+			},
+			{
+				path: "records",
+				element: <Records />,
 			},
 		],
 	},
