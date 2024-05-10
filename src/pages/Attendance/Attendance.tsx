@@ -88,7 +88,6 @@ const Attendance: React.FC = () => {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const takeAttendance = async (scanData: any) => {
-		const email = user?.email;
 		const lecture_id = 1;
 		const qrData = await JSON.parse(scanData);
 		const lecturer_lat = Number(qrData.lat);
@@ -99,7 +98,7 @@ const Attendance: React.FC = () => {
 		const maxDistance = 25; // Set maximum distance threshold to 25 meters
 
 		if (distance > maxDistance) {
-			alert(`${lat} ${long}`)
+			alert(`${lat} ${long}`);
 			toast.error("You are not in class");
 			return;
 		}
@@ -110,8 +109,7 @@ const Attendance: React.FC = () => {
 		}
 
 		const attendanceData = {
-			email: email,
-			lecture_id: lecture_id,
+			lecture: lecture_id,
 		};
 
 		const loadingToast = toast.loading("Sending attendance data");
