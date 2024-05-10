@@ -108,18 +108,40 @@ const Attendance: React.FC = () => {
 			return;
 		}
 
-		toast.success(
-			`"Successful Attendance" Course ID: ${courseId}, email: ${email}, lecture ID: ${lecture_id}`,
-		);
-
-		alert(scanData);
-
 		const attendanceData = {
 			email: email,
 			lecture_id: lecture_id,
 		};
 
-		console.log(attendanceData);
+		const loadingToast = toast.loading("Sending attendance data");
+
+		try {
+			const response = await fetch(
+				"https://finalyear-project-backend.onrender.com/api/create/lecturer/attendance",
+				{
+					method: "POST",
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(attendanceData),
+				},
+			);
+			const data = await response.json();
+
+			if (data.success) {
+				toast.success(
+					`"Successful Attendance" Course ID: ${courseId}, email: ${email}, lecture ID: ${lecture_id}`,
+				);
+			} else {
+				toast.error(data.message);
+			}
+		} catch (error) {
+			console.error("Error fetching QR string:", error);
+			toast.error("Error generating qr code");
+		} finally {
+			toast.dismiss(loadingToast);
+		}
 	};
 
 	return (
