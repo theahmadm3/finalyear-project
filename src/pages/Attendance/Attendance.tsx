@@ -88,10 +88,10 @@ const Attendance: React.FC = () => {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const takeAttendance = async (scanData: any) => {
-		const lecture_id = 1;
 		const qrData = await JSON.parse(scanData);
 		const lecturer_lat = Number(qrData.lat);
 		const lecturer_long = Number(qrData.long);
+		const lecture_id = qrData.lecture_id;
 		const courseId = qrData.course_id;
 
 		const distance = calculateDistance(lat, long, lecturer_lat, lecturer_long);
