@@ -129,7 +129,7 @@ const Attendance: React.FC = () => {
 			const data = await response.json();
 
 			if (data.success) {
-				toast.success("Successful Attendance");
+				toast.success(data.message);
 			} else {
 				toast.error(data.message);
 			}
