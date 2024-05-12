@@ -65,7 +65,7 @@ const ViewStudentAttendance: React.FC<StudentRecordProps> = ({
 			{isLoading ? (
 				<></>
 			) : (
-				<Modal show={show} onHide={handleClose}>
+				<Modal centered show={show} onHide={handleClose}>
 					<Modal.Header closeButton></Modal.Header>
 					<Modal.Body className="tc">
 						<h3>Attendance record for</h3>
