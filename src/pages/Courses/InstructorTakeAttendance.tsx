@@ -28,27 +28,30 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 	const handleCloseQrCode = () => setShowQrCode(false);
 
 	const getLocation = () => {
+		const loadingToast = toast.loading("Getting location");
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
 				(position) => {
 					setLocation(
 						`${position.coords.latitude} ${position.coords.longitude}`,
 					);
+					toast.dismiss(loadingToast);
 					handleShow();
 				},
 				(error) => {
 					setLocationError(error.message);
 					alert(error.message);
 					toast.error(error.message);
+					toast.dismiss(loadingToast);
 				},
 			);
 		} else {
 			setLocationError("Geolocation is not supported by your browser.");
 			alert("Geolocation is not supported by your browser.");
 			toast.error("Geolocation is not supported by your browser.");
+			toast.dismiss(loadingToast);
 		}
 	};
-	
 
 	const [selectedTime, setSelectedTime] = useState<string>("");
 
@@ -92,6 +95,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 			if (data.success) {
 				const qrString = JSON.stringify(data.data);
 				setFormData(qrString);
+				toast.success(data.message);
 				HandleShowQrCode();
 			} else {
 				setFormError(data.message);
