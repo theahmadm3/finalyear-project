@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import { AuthContext } from "../../contexts/auth/AuthContext";
 import { toast } from "react-toastify";
+import ViewStudentAttendance from "./ViewStudentAttendance";
 
 interface Course {
+	id: number;
 	title: string;
 	course_code: string;
 	email: string;
@@ -69,12 +71,11 @@ const StudentRecords: React.FC = () => {
 								<br />
 								{/* {course.first_name} <br />
 								{course.last_name} <br /> */}
-								<a
-									href={`mailto:${course.email}`}
-									className="inline-flex pa2 pl3 pr3 tc br3 link white bg-blue grow shadow-1"
-								>
-									Contact Email to lecturer
-								</a>
+								<ViewStudentAttendance
+									courseId={course.id}
+									name={course.title}
+                                    code={course.course_code}
+								/>
 							</div>
 						);
 					})}
