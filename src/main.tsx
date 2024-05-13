@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+	createHashRouter,
+	RouterProvider,
+} from "react-router-dom";
 
 import "bootstrap";
 import "react-bootstrap";
@@ -19,11 +22,11 @@ import Profile from "./pages/Profile/Profile.tsx";
 import Error404 from "./pages/Error404/Error404.tsx";
 import Attendance from "./pages/Attendance/Attendance.tsx";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Records from "./pages/Records/Records.tsx";
+import Lectures from "./pages/Records/Lectures.tsx";
 
-
-const router = createBrowserRouter([
+const router = createHashRouter([
 	{
 		path: "/",
 		element: <App />,
@@ -55,6 +58,10 @@ const router = createBrowserRouter([
 			{
 				path: "records",
 				element: <Records />,
+			},
+			{
+				path: "lectures",
+				element: <Lectures />,
 			},
 		],
 	},

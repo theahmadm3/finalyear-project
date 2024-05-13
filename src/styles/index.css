@@ -51,6 +51,10 @@ body,
 		width: 48%;
 	}
 }
+th, td {
+	background: transparent !important;
+	color:inherit !important;
+}
 @media (max-width: 767px) {
 	.w-100-s {
 		width: 100%;
