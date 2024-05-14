@@ -64,17 +64,26 @@ const StudentRecords: React.FC = () => {
 								key={index}
 								className="ba b--moon-gray pa3 pb4 shadow-1 br4 w-48-m w-30-l w-100-s mb3 mr3-l bg-light-gray blue tc"
 							>
-								<div className="b-circle-s center mb2"></div>
+								<div
+									className="b-circle-s center mb2 shadow"
+									style={{
+										backgroundImage: `url('https://placehold.co/600x400@3x.png?text=${encodeURIComponent(
+											course.course_code,
+										)}&font=roboto')`,
+										backgroundPosition: "center",
+										backgroundSize: "cover",
+									}}
+								></div>
 								<p>{course.title}</p>
 
-								<p>{course.course_code}</p>
+								{/* <p>{course.course_code}</p> */}
 								<br />
 								{/* {course.first_name} <br />
 								{course.last_name} <br /> */}
 								<ViewStudentAttendance
 									courseId={course.id}
 									name={course.title}
-                                    code={course.course_code}
+									code={course.course_code}
 								/>
 							</div>
 						);

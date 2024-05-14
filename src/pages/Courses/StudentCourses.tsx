@@ -62,7 +62,16 @@ const StudentCourses: React.FC = () => {
 								key={index}
 								className="ba b--moon-gray pa3 pb4 shadow-1 br4 w-48-m w-30-l w-100-s mb3 mr3-l bg-light-gray blue tc"
 							>
-								<div className="b-circle-s center mb2"></div>
+								<div
+									className="b-circle-s center mb2 shadow"
+									style={{
+										backgroundImage: `url('https://placehold.co/600x400@3x.png?text=${encodeURIComponent(
+											course.course_code,
+										)}&font=roboto')`,
+										backgroundPosition: "center",
+										backgroundSize: "cover",
+									}}
+								></div>
 								<p>{course.title}</p>
 
 								<p>{course.course_code}</p>
@@ -73,7 +82,7 @@ const StudentCourses: React.FC = () => {
 									href={`mailto:${course.email}`}
 									className="inline-flex pa2 pl3 pr3 tc br3 link white bg-blue grow shadow-1"
 								>
-									Contact Email to lecturer
+									Email lecturer
 								</a>
 							</div>
 						);

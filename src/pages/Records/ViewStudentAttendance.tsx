@@ -82,7 +82,7 @@ const ViewStudentAttendance: React.FC<StudentRecordProps> = ({
 									? "warning"
 									: "danger"
 							}`}
-							now={totalAttendance}
+							now={totalAttendance < 1 ? 4 : totalAttendance}
 							label={`${totalAttendance}%`}
 						/>
 					</Modal.Body>
