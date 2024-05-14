@@ -73,8 +73,6 @@ const InstructorRecords: React.FC = () => {
 									}}
 								></div>
 								<p>{course.title}</p>
-
-								<p>{course.course_code}</p>
 								<p></p>
 								<br />
 							</div>

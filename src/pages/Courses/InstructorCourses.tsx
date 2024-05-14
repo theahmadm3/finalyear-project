@@ -74,7 +74,6 @@ const InstructorCourses: React.FC = () => {
 									}}
 								></div>
 								<p>{course.title}</p>
-								<p>{course.course_code}</p>
 								<p></p>
 								<br />
 								<InstructorTakeAttendance

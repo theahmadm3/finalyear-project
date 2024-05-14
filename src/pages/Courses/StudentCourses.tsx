@@ -73,8 +73,6 @@ const StudentCourses: React.FC = () => {
 									}}
 								></div>
 								<p>{course.title}</p>
-
-								<p>{course.course_code}</p>
 								<br />
 								{/* {course.first_name} <br />
 								{course.last_name} <br /> */}
