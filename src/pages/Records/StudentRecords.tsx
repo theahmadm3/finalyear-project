@@ -86,12 +86,11 @@ const StudentRecords: React.FC = () => {
 								></div>
 								<p>{course.title}</p>
 								<br />
-								{/* {course.first_name} <br />
-								{course.last_name} <br /> */}
+								{course.first_name} <br />
+								{course.last_name} <br />
 								<ViewStudentAttendance
 									courseId={course.id}
 									name={course.title}
-									code={course.course_code}
 									code={course.course_code}
 								/>
 							</div>

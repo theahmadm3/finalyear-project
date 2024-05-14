@@ -73,16 +73,6 @@ const InstructorCourses: React.FC = () => {
 										backgroundSize: "cover",
 									}}
 								></div>
-								<div
-									className="b-circle-s center mb2 shadow"
-									style={{
-										backgroundImage: `url('https://placehold.co/600x400@3x.png?text=${encodeURIComponent(
-											course.course_code,
-										)}&font=roboto')`,
-										backgroundPosition: "center",
-										backgroundSize: "cover",
-									}}
-								></div>
 								<p>{course.title}</p>
 								<p></p>
 								<br />
