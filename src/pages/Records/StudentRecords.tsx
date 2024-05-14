@@ -74,20 +74,12 @@ const StudentRecords: React.FC = () => {
 										backgroundSize: "cover",
 									}}
 								></div>
-								<div
-									className="b-circle-s center mb2 shadow"
-									style={{
-										backgroundImage: `url('https://placehold.co/600x400@3x.png?text=${encodeURIComponent(
-											course.course_code,
-										)}&font=roboto')`,
-										backgroundPosition: "center",
-										backgroundSize: "cover",
-									}}
-								></div>
 								<p>{course.title}</p>
 								<br />
-								{course.first_name} <br />
-								{course.last_name} <br />
+
+								{course.first_name}
+								<br />
+
 								<ViewStudentAttendance
 									courseId={course.id}
 									name={course.title}

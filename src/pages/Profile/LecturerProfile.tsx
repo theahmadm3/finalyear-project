@@ -35,10 +35,12 @@ const InstructorProfile: React.FC = () => {
 				></div>
 				<br className="dn-ns"></br>
 				<div className="ml3-ns">
-					<p className="b ">{/* {user?.first_name} {user?.last_name} */}</p>
+					<p className="b ">
+						{user?.first_name} {user?.last_name}
+					</p>
 					<p className="">
 						<span className="b">Department:</span>
-						{/* {user?.department} */}
+						{user?.department}
 					</p>
 				</div>
 			</section>
@@ -50,11 +52,11 @@ const InstructorProfile: React.FC = () => {
 				<div className="pa2 flex flex-row-ns justify-between-ns flex-column-s w-100">
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Country</p>
-						{/* <p>{user?.country}</p> */}
+						<p>{user?.country}</p>
 					</div>
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Phone</p>
-						{/* <p>{user?.phone_number}</p> */}
+						<p>{user?.phone_number}</p>
 					</div>
 					<div className="pa2 w-25-ns w-100">
 						<p className="b">Email</p>
