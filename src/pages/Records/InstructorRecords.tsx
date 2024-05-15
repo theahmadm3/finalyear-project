@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 
 import { AuthContext } from "../../contexts/auth/AuthContext";
+import { Link } from "react-router-dom";
 
 interface Course {
 	id: number;
@@ -73,7 +74,12 @@ const InstructorRecords: React.FC = () => {
 									}}
 								></div>
 								<p>{course.title}</p>
-								<p></p>
+								<Link
+									to={`/portal/lectures/${course.id}`}
+									className="link black pa2 pl3 pr3 br3 bg-blue white dim"
+								>
+									View Lectures
+								</Link>
 								<br />
 							</div>
 						);

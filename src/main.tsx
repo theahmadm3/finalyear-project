@@ -60,7 +60,7 @@ const router = createHashRouter([
 				element: <Records />,
 			},
 			{
-				path: "lectures",
+				path: "lectures/:id",
 				element: <Lectures />,
 			},
 		],
