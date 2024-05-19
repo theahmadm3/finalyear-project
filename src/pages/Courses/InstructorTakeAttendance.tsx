@@ -21,8 +21,6 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 	const [locationError, setLocationError] = useState<string>("");
 	const [formError, setFormError] = useState<string>("");
 	const [formData, setFormData] = useState<string>("");
-	const [selectedTime, setSelectedTime] = useState<string>("");
-	// const [selectedVenue, setSelectedVenue] = useState<string>("");
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -43,7 +41,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 				(error) => {
 					setLocationError(error.message);
 					alert(error.message);
-					toast.error(locationError);
+					toast.error(error.message);
 					toast.dismiss(loadingToast);
 				},
 			);
@@ -54,6 +52,8 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 			toast.dismiss(loadingToast);
 		}
 	};
+
+	const [selectedTime, setSelectedTime] = useState<string>("");
 
 	const handleTimeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setSelectedTime(event.target.value);
@@ -140,23 +140,17 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 								/>
 							</div>
 							<div className="flex flex-column w-45-ns">
-								<label htmlFor="time" className="mb2 b pa1">
-									Venue
+								<label htmlFor="location" className="mb2 b pa1">
+									Location
 								</label>
-								<select
-									id="time"
-									className="pa1 br3 bn shadow-2"
-									style={{ outline: "none" }}
-									value={location}
-									onChange={handleTimeChange}
+								<input
+									id="location"
+									className="pa2 br3 bn shadow-2"
+									value={location === "" ? "click to get location" : location}
+									readOnly
 									required
-								>
-									<option value="">Select Venue</option>
-									<option value={"9-12"}>E155</option>
-									<option value={"12-14"}>E125</option>
-									<option value={"14-17"}>E145</option>
-									<option value={"1-23"}>E135</option>
-								</select>
+								/>
+								{locationError && <p>{locationError}</p>}
 							</div>
 						</div>
 						<div className="flex flex-row-ns flex-column-s justify-between">
