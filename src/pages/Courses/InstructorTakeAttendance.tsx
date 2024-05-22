@@ -127,8 +127,16 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 	};
 	const handleSubmitManualAttendance = (e: FormEvent) => {
 		e.preventDefault();
-		toast.success("Submitted Manual Attendance");
+
+		const loadingToastId = toast.loading("Sending manual attendance");
+
+		
+		setTimeout(() => {
+			toast.dismiss(loadingToastId); 
+			toast.success("Submitted Manual Attendance");
+		}, 3000);
 	};
+
 	useEffect(() => {
 		fetch(
 			`https://finalyear-project-backend.onrender.com/api/get/enrolled_student/${courseId}`,

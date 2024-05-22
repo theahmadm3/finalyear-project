@@ -75,9 +75,9 @@ const StudentRecords: React.FC = () => {
 									}}
 								></div>
 								<p>{course.title}</p>
-								<br />
 
 								{course.first_name}
+								<br />
 								<br />
 
 								<ViewStudentAttendance

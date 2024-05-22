@@ -73,8 +73,10 @@ const StudentCourses: React.FC = () => {
 									}}
 								></div>
 								<p>{course.title}</p>
+
+								{course.first_name}
 								<br />
-								{course.first_name} <br />
+								<br />
 								<a
 									href={`mailto:${course.email}`}
 									className="inline-flex pa2 pl3 pr3 tc br3 link white bg-blue grow shadow-1"
