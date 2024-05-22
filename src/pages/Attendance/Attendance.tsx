@@ -95,7 +95,7 @@ const Attendance: React.FC = () => {
 		const courseId = qrData.course_id;
 
 		const distance = calculateDistance(lat, long, lecturer_lat, lecturer_long);
-		const maxDistance = 25; // Set maximum distance threshold to 25 meters
+		const maxDistance = 50; // Set maximum distance threshold to 25 meters
 
 		if (distance > maxDistance) {
 			alert(`${lat} ${long}`);

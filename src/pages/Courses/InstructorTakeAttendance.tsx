@@ -17,6 +17,8 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 
 	const [show, setShow] = useState<boolean>(false);
 	const [showQrCode, setShowQrCode] = useState<boolean>(false);
+	const [showManualAttendance, setShowManualAttendance] =
+		useState<boolean>(false);
 	const [location, setLocation] = useState<string>("");
 	const [locationError, setLocationError] = useState<string>("");
 	const [formError, setFormError] = useState<string>("");
@@ -26,6 +28,8 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 	const handleShow = () => setShow(true);
 	const HandleShowQrCode = () => setShowQrCode(true);
 	const handleCloseQrCode = () => setShowQrCode(false);
+	const HandleShowManualAttendance = () => setShowManualAttendance(true);
+	const handleCloseManualAttendance = () => setShowManualAttendance(false);
 
 	const getLocation = () => {
 		const loadingToast = toast.loading("Getting location");
@@ -202,6 +206,19 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 						<QRCode size={350} value={formData} />
 					</div>
 				</Modal.Body>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={HandleShowManualAttendance}>
+						Take Manual Attendance
+					</Button>
+				</Modal.Footer>
+			</Modal>
+			<Modal
+				show={showManualAttendance}
+				onHide={handleCloseManualAttendance}
+				centered
+			>
+				<Modal.Header closeButton> Students </Modal.Header>
+				<Modal.Body></Modal.Body>
 			</Modal>
 		</>
 	);
