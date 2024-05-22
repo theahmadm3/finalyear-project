@@ -1,5 +1,5 @@
 import QRCode from "qrcode.react";
-import React, { FormEvent, useContext, useState } from "react";
+import React, { FormEvent, useContext, useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { AuthContext } from "../../contexts/auth/AuthContext";
 import { toast } from "react-toastify";
@@ -7,6 +7,13 @@ import { toast } from "react-toastify";
 export interface InstructorTakeAttendanceProps {
 	courseId: number;
 	name: string;
+}
+
+interface Students {
+	id: number;
+	student_id: number;
+	first_name: string;
+	last_name: string;
 }
 
 const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
@@ -23,6 +30,7 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 	const [locationError, setLocationError] = useState<string>("");
 	const [formError, setFormError] = useState<string>("");
 	const [formData, setFormData] = useState<string>("");
+	const [students, setStudents] = useState<Students[]>([]);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -117,6 +125,34 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 
 		handleClose();
 	};
+	const handleSubmitManualAttendance = (e: FormEvent) => {
+		e.preventDefault();
+		toast.success("Submitted Manual Attendance");
+	};
+	useEffect(() => {
+		fetch(
+			`https://finalyear-project-backend.onrender.com/api/get/enrolled_student/${courseId}`,
+			{
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+			},
+		)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				}
+				return response.json();
+			})
+			.then((data) => {
+				setStudents(data.data);
+			})
+			.catch((error) => {
+				console.error("Error fetching enrolled students:", error);
+			});
+	}, [courseId, token]);
 
 	return (
 		<>
@@ -217,8 +253,29 @@ const InstructorTakeAttendance: React.FC<InstructorTakeAttendanceProps> = ({
 				onHide={handleCloseManualAttendance}
 				centered
 			>
-				<Modal.Header closeButton> Students </Modal.Header>
-				<Modal.Body></Modal.Body>
+				<Modal.Header closeButton> Manual Attendance </Modal.Header>
+				<Modal.Body>
+					<form onSubmit={handleSubmitManualAttendance}>
+						<ul style={{ listStyleType: "none" }}>
+							{students.map((student, index) => (
+								<li key={index}>
+									<input
+										type="checkbox"
+										className="mr2"
+										id={`student${student.id}`}
+									/>
+									<label htmlFor={`student${student.id}`}>
+										{student.first_name} {student.last_name}{" "}
+										{student.student_id}
+									</label>
+								</li>
+							))}
+						</ul>
+						<button className="bg-blue pa2 pl3 pr3 br4 bn white" type="submit">
+							Submit
+						</button>
+					</form>
+				</Modal.Body>
 			</Modal>
 		</>
 	);
