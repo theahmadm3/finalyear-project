@@ -1,32 +1,20 @@
-## React + TypeScript + Vite
+# QR Code Attendance System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Final-year project for the B.Sc. Computer Science at Nile University of Nigeria
+(2019 to 2024). Individual project by Ahmad Musa Muhammad.
 
-Currently, two official plugins are available:
+## Problem
+Student attendance at the university was taken by roll call or by passing round
+a paper sign-in sheet, which is slow and open to proxy sign-ins.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Solution
+A web-based attendance system that records attendance by scanning QR codes,
+replacing the manual process.
 
-## Expanding the ESLint configuration
+## Built with
+React, TypeScript, Vite, React Context API.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-final year project
-finalyear-project
+## Status
+The frontend is deployed at https://finalyear-project-gules.vercel.app. The
+backend service is no longer hosted, so the live demo does not function end to
+end. The full project report is available on request.
